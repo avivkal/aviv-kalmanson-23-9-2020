@@ -15,7 +15,7 @@ class Favorites extends Component {
         const oldFavorites = JSON.parse(localStorage.getItem('favorites'));
         let requests = [];
         if (this.props.firstTimeFavorites) {
-            if(Array.isArray(oldFavorites) && oldFavorites.length){
+            if (Array.isArray(oldFavorites) && oldFavorites.length) {
                 for (const favorite of oldFavorites) {
                     requests.push(
                         axios.all([axiosConfig.get('forecasts/v1/daily/5day/' + favorite.key + API_PATH),
@@ -34,7 +34,7 @@ class Favorites extends Component {
                     this.props.firstTimeFinishedFavorites();
                 })
             }
-           
+
         }
     }
 
