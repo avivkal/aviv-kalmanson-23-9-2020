@@ -57,7 +57,7 @@ const addToFavorites = () => {
     const current = store.getState().current;
     let newFav = [];
     if(!(Array.isArray(favorites) && favorites.length)){
-        newFav.concat(current);
+        newFav.push(current);
     }
     else{
         newFav = favorites.concat(current);
