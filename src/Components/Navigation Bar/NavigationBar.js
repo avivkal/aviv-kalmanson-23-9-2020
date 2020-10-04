@@ -9,10 +9,7 @@ import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenh
 
 
 class NavigationBar extends Component {
-
     toggleHandle = () => {
-        console.log(this.props.unit);
-
         if (this.props.unit === 'C') {
             if (!existsInFavorites(this.props.favorites, this.props.current)) {
                 this.props.toggle(

@@ -79,7 +79,6 @@ const convertFavoritesToFahrenheit = () => {
         favorites[i].currentTemp = convertCelsiusToFahrenheit(favorites[i].currentTemp);
         favorites[i].fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(favorites[i].fiveDaysForecast);
     }
-    console.log(favorites);
 
     return favorites;
 
