@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/aviv-kalmanson-23-9-2020/precache-manifest.b5d3b1e2da388dadc4ff12cdfe35dd92.js"
+  "/aviv-kalmanson-23-9-2020/precache-manifest.b2602a731affde3cfb262d18248b45f0.js"
 );
 
 self.addEventListener('message', (event) => {
