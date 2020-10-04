@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/myFinalProject/static/css/main.a8323008.chunk.css",
+    "main.js": "/myFinalProject/static/js/main.bd2f560c.chunk.js",
+    "main.js.map": "/myFinalProject/static/js/main.bd2f560c.chunk.js.map",
+    "runtime-main.js": "/myFinalProject/static/js/runtime-main.ef2f818a.js",
+    "runtime-main.js.map": "/myFinalProject/static/js/runtime-main.ef2f818a.js.map",
+    "static/css/2.06290bfb.chunk.css": "/myFinalProject/static/css/2.06290bfb.chunk.css",
+    "static/js/2.68d4981a.chunk.js": "/myFinalProject/static/js/2.68d4981a.chunk.js",
+    "static/js/2.68d4981a.chunk.js.map": "/myFinalProject/static/js/2.68d4981a.chunk.js.map",
+    "index.html": "/myFinalProject/index.html",
+    "precache-manifest.500111a5921df3c7798b2c81c3020d6f.js": "/myFinalProject/precache-manifest.500111a5921df3c7798b2c81c3020d6f.js",
+    "service-worker.js": "/myFinalProject/service-worker.js",
+    "static/css/2.06290bfb.chunk.css.map": "/myFinalProject/static/css/2.06290bfb.chunk.css.map",
+    "static/css/main.a8323008.chunk.css.map": "/myFinalProject/static/css/main.a8323008.chunk.css.map",
+    "static/js/2.68d4981a.chunk.js.LICENSE.txt": "/myFinalProject/static/js/2.68d4981a.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/myFinalProject/static/media/outline-icons.ef60a4f6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ef2f818a.js",
+    "static/css/2.06290bfb.chunk.css",
+    "static/js/2.68d4981a.chunk.js",
+    "static/css/main.a8323008.chunk.css",
+    "static/js/main.bd2f560c.chunk.js"
+  ]
+}
