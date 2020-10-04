@@ -16,6 +16,8 @@ const findKeyByName = (name, searchText) => {
 }
 
 const existsInFavorites = (x, favorites) => {
+    if(favorites === null)
+        return false;
     const found = favorites.find(favorite => x.key === favorite.key);
     return found === undefined ? false : true;
 }
