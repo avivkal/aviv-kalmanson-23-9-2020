@@ -56,10 +56,13 @@ const addToFavorites = () => {
     const favorites = store.getState().favorites;
     const current = store.getState().current;
     let newFav;
-    if(!(Array.isArray(favorites) && favorites.length))
-        newFav = [current];
-    else
+    if(!(Array.isArray(favorites) && favorites.length)){
+        newFav = [];
+        newFav.push(current);
+    }
+    else{
         newFav = favorites.push(current);
+    }
     localStorage.setItem('favorites', JSON.stringify(newFav));
     return {
         type: actionTypes.ADD_TO_FAVORITES,
