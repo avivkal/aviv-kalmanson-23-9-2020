@@ -31,7 +31,7 @@ class NavigationBar extends Component {
         return (
 
             <Navbar collapseOnSelect expand="lg" bg={this.props.darkMode ? "light" : "dark"} variant={this.props.darkMode ? "light" : "dark"} >
-                <Navbar.Brand as={Link} to="/">Herolo Weather Task</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/aviv-kalmanson-23-9-2020">Herolo Weather Task</Navbar.Brand>
                 <Button
                     style={{ backgroundColor: '#343A40', border: '1px solid #343A40' }}
                     onClick={() => { this.toggleHandle() }}
@@ -51,8 +51,8 @@ class NavigationBar extends Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">
-                        <Nav.Link as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/favorites">
+                        <Nav.Link as={Link} to="/aviv-kalmanson-23-9-2020">Home</Nav.Link>
+                        <Nav.Link as={Link} to="/aviv-kalmanson-23-9-2020/favorites">
                             Favorites </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
