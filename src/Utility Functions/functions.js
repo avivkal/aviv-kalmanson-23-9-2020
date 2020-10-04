@@ -79,11 +79,17 @@ const convertFavoritesToFahrenheit = () => {
         favorites[i].currentTemp = convertCelsiusToFahrenheit(favorites[i].currentTemp);
         favorites[i].fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(favorites[i].fiveDaysForecast);
     }
-
     return favorites;
-
 }
 
+
+const convertIconPath = (icon) => {
+    //example: 1 => 01
+    if(icon<10){
+        return '0' + icon;
+    }
+    return icon;
+}
 export {
     convertCelsiusToFahrenheit,
     convertFahrenheitToCelsius,
@@ -93,6 +99,7 @@ export {
     forLoopconvertFahrenheitToCelsius,
     convertTemp,
     convertFavoritesToCelsius,
-    convertFavoritesToFahrenheit
+    convertFavoritesToFahrenheit,
+    convertIconPath
 }
 

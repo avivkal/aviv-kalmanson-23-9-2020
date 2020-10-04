@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import './App.scss';
+import '../../App.scss';
 import { Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import * as actions from '../../Actions/actions'
@@ -44,7 +43,9 @@ class NavigationBar extends Component {
                     onClick={() => { this.toggleHandle() }}
                     variant="secondary"
                 >
-                    °C / °F
+                <span className={this.props.unit === 'C' ? 'active' : null}>°C </span>
+                <span>/</span>
+                <span className={this.props.unit === 'F' ? 'active' : null }> °F</span>  
                 </Button>
 
                 <Button
