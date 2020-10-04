@@ -53,16 +53,17 @@ const updateForecast = (arr) => {
 }
 
 const addToFavorites = () => {
-    const favorites = store.getState().favorites;
+    const favorites = JSON.parse(localStorage.getItem('favorites'));
     const current = store.getState().current;
-    let newFav;
+    let newFav = [];
     if(!(Array.isArray(favorites) && favorites.length)){
-        newFav = [];
-        newFav.push(current);
+        newFav.concat(current);
     }
     else{
-        newFav = favorites.push(current);
+        newFav = favorites.concat(current);
     }
+    console.log(current);
+    console.log(newFav);
     localStorage.setItem('favorites', JSON.stringify(newFav));
     return {
         type: actionTypes.ADD_TO_FAVORITES,
