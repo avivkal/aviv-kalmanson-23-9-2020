@@ -17,10 +17,11 @@ const updateSearch = (arr) => {
 }
 
 const setCurrentCityDetails = (data, cityKey, cityName) => {
+    const unit = store.getState().unit;
     const icon = data[1].data[0].WeatherIcon < 10 ? '0' + data[1].data[0].WeatherIcon : data[1].data[0].WeatherIcon;
-    const currentTemp = Math.floor(data[1].data[0].Temperature.Metric.Value);
+    const currentTemp = unit === 'C' ? Math.floor(data[1].data[0].Temperature.Metric.Value) : Math.floor(data[1].data[0].Temperature.Imperial.Value);
     const currentStateOfWeather = data[1].data[0].WeatherText;
-    const fiveDaysForecast = forLoopconvertFahrenheitToCelsius(data[0].data.DailyForecasts);
+    const fiveDaysForecast = unit === 'C' ? forLoopconvertFahrenheitToCelsius(data[0].data.DailyForecasts) : data[0].data.DailyForecasts;
 
     return {
         type: actionTypes.SET_CURRENT_CITY_DETAILS,
@@ -56,10 +57,10 @@ const addToFavorites = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
     const current = store.getState().current;
     let newFav = [];
-    if(!(Array.isArray(favorites) && favorites.length)){
+    if (!(Array.isArray(favorites) && favorites.length)) {
         newFav.push(current);
     }
-    else{
+    else {
         newFav = favorites.concat(current);
     }
     localStorage.setItem('favorites', JSON.stringify(newFav));

@@ -5,26 +5,36 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import * as actions from '../../Actions/actions'
-import { convertFahrenheitToCelsius, convertCelsiusToFahrenheit, forLoopconvertCelsiusToFahrenheit, forLoopconvertFahrenheitToCelsius } from '../../Utility Functions/functions';
+import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, forLoopconvertCelsiusToFahrenheit, forLoopconvertFahrenheitToCelsius } from '../../Utility Functions/functions';
 
 
 class NavigationBar extends Component {
 
     toggleHandle = () => {
+        console.log(this.props.unit);
+
         if (this.props.unit === 'C') {
-            this.props.toggle(
-                convertCelsiusToFahrenheit(this.props.current.currentTemp),
-                'F',
-                forLoopconvertCelsiusToFahrenheit(this.props.current.fiveDaysForecast)
-            );
+            if (!existsInFavorites(this.props.favorites, this.props.current)) {
+                this.props.toggle(
+                    convertCelsiusToFahrenheit(this.props.current.currentTemp),
+                    'F',
+                    forLoopconvertCelsiusToFahrenheit(this.props.current.fiveDaysForecast)
+                );
+            }
+            this.props.updateFavorites(convertFavoritesToFahrenheit());
+
         }
         else {
-            this.props.toggle(
-                convertFahrenheitToCelsius(this.props.current.currentTemp),
-                'C',
-                forLoopconvertFahrenheitToCelsius(this.props.current.fiveDaysForecast)
-            );
+            if (!existsInFavorites(this.props.favorites, this.props.current)) {
+                this.props.toggle(
+                    convertFahrenheitToCelsius(this.props.current.currentTemp),
+                    'C',
+                    forLoopconvertFahrenheitToCelsius(this.props.current.fiveDaysForecast)
+                );
+            }
+            this.props.updateFavorites(convertFavoritesToCelsius());
         }
+
     }
 
     render() {
@@ -65,7 +75,9 @@ class NavigationBar extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         toggle: (newTemp, newUnit, fiveDays) => dispatch(actions.toggle(newTemp, newUnit, fiveDays)), //toggle C/F
-        toggleDarkMode: () => dispatch(actions.toggleDarkMode()) //TOGGLE DARK MODE
+        toggleDarkMode: () => dispatch(actions.toggleDarkMode()), //TOGGLE DARK MODE
+        updateFavorites: (favorites) => dispatch(actions.updateFavorites(favorites)),
+
     }
 }
 
@@ -73,7 +85,8 @@ const mapStateToProps = (state) => {
     return {
         darkMode: state.darkmode,
         unit: state.unit,
-        current: state.current
+        current: state.current,
+        favorites: state.favorites
     }
 }
 
