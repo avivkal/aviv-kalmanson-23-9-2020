@@ -36,7 +36,7 @@ class Favorites extends Component {
     }
 
     handleClickOnCard = (clickedFavorite) => {
-        this.props.history.push('/myFinalProject');
+        this.props.history.push('/aviv-kalmanson-23-9-2020');
         this.props.clearText();
         this.props.setFavoriteCityDetails(clickedFavorite);
 
