@@ -1,6 +1,6 @@
-import { actionTypes } from '../Constants/actionTypes'
-import { store } from '../Constants/store'
-import { forLoopconvertFahrenheitToCelsius } from '../UtilityFunctions/functions'
+import { actionTypes } from './actionTypes'
+import { store } from '../StoreSetup/store'
+import { forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
 
 const updateText = (val) => {
     return {

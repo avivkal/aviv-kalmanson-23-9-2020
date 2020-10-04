@@ -1,4 +1,4 @@
-import { actionTypes } from '../Constants/actionTypes'
+import { actionTypes } from './actionTypes'
 
 const toggle = (newTemp, newUnit, fiveDays) => {
     return {

@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../../App.scss'
 import { CSSTransitionGroup } from 'react-transition-group';
-import * as generalActions from '../../Actions/actions'
-import * as favoritesActions from '../../Actions/favoritesActions'
-import { axiosConfig } from '../../Axios/axiosConfig'
+import * as generalActions from '../../Store/Actions/actions'
+import * as favoritesActions from '../../Store/Actions/favoritesActions'
 import axios from 'axios'
 import { API_PATH } from '../../Constants/const'
 import { forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
@@ -20,8 +19,8 @@ class Favorites extends Component {
         if (this.props.firstTimeFavorites) {
             for (const favorite of oldFavorites) {
                 requests.push(
-                    axios.all([axiosConfig.get('forecasts/v1/daily/5day/' + favorite.key + API_PATH),
-                    axiosConfig.get('currentconditions/v1/' + favorite.key + API_PATH)])
+                    axios.all([axios.get('forecasts/v1/daily/5day/' + favorite.key + API_PATH),
+                    axios.get('currentconditions/v1/' + favorite.key + API_PATH)])
                 )
             }
             Promise.all(requests).then((response) => {

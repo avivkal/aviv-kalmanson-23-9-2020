@@ -3,8 +3,8 @@ import '../../App.scss';
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
-import * as generalActions from '../../Actions/actions'
-import * as navigationBarActions from '../../Actions/navigationBarActions'
+import * as generalActions from '../../Store/Actions/actions'
+import * as navigationBarActions from '../../Store/Actions/navigationBarActions'
 import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, forLoopconvertCelsiusToFahrenheit, forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions';
 import { HOME_PATH,FAVORITES_PATH } from '../../Constants/const'
 

@@ -8,9 +8,8 @@ import { Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import { CSSTransitionGroup } from 'react-transition-group';
 import { ICON_PATH_1, ICON_PATH_2, API_PATH, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME } from '../../Constants/const'
-import * as generalActions from '../../Actions/actions'
-import * as homeActions from '../../Actions/homeActions'
-import { axiosConfig } from '../../Axios/axiosConfig'
+import * as generalActions from '../../Store/Actions/actions'
+import * as homeActions from '../../Store/Actions/homeActions'
 import { existsInFavorites, findKeyByName } from '../../UtilityFunctions/functions'
 import CardsList from '../CardsList/cardsList'
 
@@ -21,8 +20,8 @@ class Home extends Component {
         const oldFavorites = JSON.parse(localStorage.getItem('favorites'));
         this.props.updateFavorites(oldFavorites);
         if (this.props.first) {
-            axios.all([axiosConfig.get('forecasts/v1/daily/5day/' + DEFAULT_CITY_KEY + API_PATH),
-            axiosConfig.get('currentconditions/v1/' + DEFAULT_CITY_KEY + API_PATH)])
+            axios.all([axios.get('forecasts/v1/daily/5day/' + DEFAULT_CITY_KEY + API_PATH),
+            axios.get('currentconditions/v1/' + DEFAULT_CITY_KEY + API_PATH)])
                 .then(data => {
                     this.props.setCurrentCityDetails(data, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME);
                     this.props.firstTimeFinished();
@@ -44,7 +43,7 @@ class Home extends Component {
 
     success = (pos) => {
         let crd = pos.coords;
-        axiosConfig.get('locations/v1/cities/geoposition/search' + API_PATH + '&q='
+        axios.get('locations/v1/cities/geoposition/search' + API_PATH + '&q='
             + crd.latitude + '%2C' + crd.longitude).then(data => {
                 this.submit(data.data.Key, data.data.EnglishName);
                 this.props.firstTimeFinished();
@@ -53,7 +52,7 @@ class Home extends Component {
 
     changeHandler = (event) => {
         this.props.updateText(event.target.value);
-        axiosConfig.get('locations/v1/cities/autocomplete' + API_PATH + '&q=' + event.target.value)
+        axios.get('locations/v1/cities/autocomplete' + API_PATH + '&q=' + event.target.value)
             .then(response => {
                 let arr = [];
                 for (let i = 0; i < response.data.length; i++) {
@@ -70,8 +69,8 @@ class Home extends Component {
     }
 
     submit = (cityKey = this.props.searchText[0].key, cityName = this.props.searchText[0].text.split(',')[0]) => {
-        axios.all([axiosConfig.get('forecasts/v1/daily/5day/' + cityKey + API_PATH),
-        axiosConfig.get('currentconditions/v1/' + cityKey + API_PATH)])
+        axios.all([axios.get('forecasts/v1/daily/5day/' + cityKey + API_PATH),
+        axios.get('currentconditions/v1/' + cityKey + API_PATH)])
             .then(data => {
                 this.props.setCurrentCityDetails(data, cityKey, cityName);
                 this.props.clearText();
