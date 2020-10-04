@@ -13,7 +13,7 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <NavigationBar />
-          <Route path="/aviv-kalmanson-23-9-2020" exact component={Home} />
+          <Route path="/" exact component={Home} />
           <Route path="/favorites" exact component={Favorites} />
         </BrowserRouter>
       </div>
