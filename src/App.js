@@ -5,6 +5,7 @@ import Favorites from './Components/Favorites/Favorites'
 import { BrowserRouter, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavigationBar from './Components/Navigation Bar/NavigationBar'
+import { HOME_PATH,FAVORITES_PATH } from './Constants/const'
 
 
 class App extends Component {
@@ -13,8 +14,8 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <NavigationBar />
-          <Route path="/aviv-kalmanson-23-9-2020" exact component={Home} />
-          <Route path="/aviv-kalmanson-23-9-2020/favorites" exact component={Favorites} />
+          <Route path={HOME_PATH} exact component={Home} />
+          <Route path={FAVORITES_PATH} exact component={Favorites} />
         </BrowserRouter>
       </div>
     );

@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../../App.scss'
 import { CSSTransitionGroup } from 'react-transition-group';
-import * as actions from '../../Actions/actions'
+import * as generalActions from '../../Actions/actions'
+import * as favoritesActions from '../../Actions/favoritesActions'
 import { axiosConfig } from '../../Axios/axiosConfig'
 import axios from 'axios'
 import { API_PATH } from '../../Constants/const'
-import { forLoopconvertFahrenheitToCelsius } from '../../Utility Functions/functions'
-import FavoriteCardList from '../FavoriteCard List/favoriteCardList'
+import { forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
+import CardsList from '../CardsList/cardsList'
+import { HOME_PATH } from '../../Constants/const'
+
 
 class Favorites extends Component {
 
@@ -36,7 +39,7 @@ class Favorites extends Component {
     }
 
     handleClickOnCard = (clickedFavorite) => {
-        this.props.history.push('/aviv-kalmanson-23-9-2020');
+        this.props.history.push(HOME_PATH);
         this.props.clearText();
         this.props.setFavoriteCityDetails(clickedFavorite);
 
@@ -51,11 +54,12 @@ class Favorites extends Component {
                     transitionEnterTimeout={1000}
                     transitionLeaveTimeout={1000}>
 
-                    <FavoriteCardList
+                    <CardsList
                         click={(currentFavorite) => this.handleClickOnCard(currentFavorite)}
                         unit={this.props.unit}
                         favorites={this.props.favorites}
                         darkMode={this.props.darkMode}
+                        isFav={true}
                     />
                 </CSSTransitionGroup>
             </div>
@@ -75,11 +79,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setFavoriteCityDetails: (clickedFavorite) => dispatch(actions.setFavoriteCityDetails(clickedFavorite)),
-        firstTimeFinished: () => dispatch(actions.firstTimeFinished()),
-        clearText: () => dispatch(actions.clear()),
-        firstTimeFinishedFavorites: () => dispatch(actions.firstTimeFinishedFavorites()),
-        updateFavorites: (favorites) => dispatch(actions.updateFavorites(favorites)),
+        setFavoriteCityDetails: (clickedFavorite) => dispatch(favoritesActions.setFavoriteCityDetails(clickedFavorite)),
+        clearText: () => dispatch(generalActions.clear()),
+        firstTimeFinishedFavorites: () => dispatch(favoritesActions.firstTimeFinishedFavorites()),
+        updateFavorites: (favorites) => dispatch(generalActions.updateFavorites(favorites)),
     }
 }
 

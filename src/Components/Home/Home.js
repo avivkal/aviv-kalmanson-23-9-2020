@@ -6,13 +6,13 @@ import { BsHeartFill, BsHeart } from 'react-icons/bs';
 import './home.scss';
 import { Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { CSSTransitionGroup } from 'react-transition-group';
 import { ICON_PATH_1, ICON_PATH_2, API_PATH, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME } from '../../Constants/const'
-import * as actions from '../../Actions/actions'
+import * as generalActions from '../../Actions/actions'
+import * as homeActions from '../../Actions/homeActions'
 import { axiosConfig } from '../../Axios/axiosConfig'
-import { existsInFavorites, findKeyByName } from '../../Utility Functions/functions'
-import CardsList from '../Cards List/cardsList'
+import { existsInFavorites, findKeyByName } from '../../UtilityFunctions/functions'
+import CardsList from '../CardsList/cardsList'
 
 
 
@@ -134,6 +134,7 @@ class Home extends Component {
                             current={this.props.current}
                             today={new Date().getDay()}
                             unit={this.props.unit}
+                            isFav={false}
                         />
 
                     </Jumbotron>
@@ -174,17 +175,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateText: (val) => dispatch(actions.updateText(val)),
-        updateSearch: (arr) => dispatch(actions.updateSearch(arr)),
-        setCurrentCityDetails: (data, cityKey, cityName) => dispatch(actions.setCurrentCityDetails(data, cityKey, cityName)),
-        updateForecast: (arr) => dispatch(actions.updateForecast(arr)),
-        addToFavorites: () => dispatch(actions.addToFavorites()),
-        firstTimeFinished: () => dispatch(actions.firstTimeFinished()),
-        clearText: () => dispatch(actions.clear()),
-        removeFromFavorites: (key) => dispatch(actions.removeFromFavorites(key)),
-        closeModal: () => dispatch(actions.closeModal()),
-        openModal: (title, text) => dispatch(actions.openModal(title, text)),
-        updateFavorites: (favorites) => dispatch(actions.updateFavorites(favorites)),
+        updateText: (val) => dispatch(homeActions.updateText(val)),
+        updateSearch: (arr) => dispatch(homeActions.updateSearch(arr)),
+        setCurrentCityDetails: (data, cityKey, cityName) => dispatch(homeActions.setCurrentCityDetails(data, cityKey, cityName)),
+        updateForecast: (arr) => dispatch(homeActions.updateForecast(arr)),
+        addToFavorites: () => dispatch(homeActions.addToFavorites()),
+        firstTimeFinished: () => dispatch(homeActions.firstTimeFinished()),
+        clearText: () => dispatch(generalActions.clear()),
+        removeFromFavorites: (key) => dispatch(homeActions.removeFromFavorites(key)),
+        closeModal: () => dispatch(homeActions.closeModal()),
+        openModal: (title, text) => dispatch(homeActions.openModal(title, text)),
+        updateFavorites: (favorites) => dispatch(generalActions.updateFavorites(favorites)),
     }
 }
 

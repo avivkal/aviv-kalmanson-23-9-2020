@@ -3,8 +3,10 @@ import '../../App.scss';
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
-import * as actions from '../../Actions/actions'
-import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, forLoopconvertCelsiusToFahrenheit, forLoopconvertFahrenheitToCelsius } from '../../Utility Functions/functions';
+import * as generalActions from '../../Actions/actions'
+import * as navigationBarActions from '../../Actions/navigationBarActions'
+import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, forLoopconvertCelsiusToFahrenheit, forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions';
+import { HOME_PATH,FAVORITES_PATH } from '../../Constants/const'
 
 
 class NavigationBar extends Component {
@@ -37,7 +39,7 @@ class NavigationBar extends Component {
         return (
 
             <Navbar collapseOnSelect expand="lg" bg={this.props.darkMode ? "light" : "dark"} variant={this.props.darkMode ? "light" : "dark"} >
-                <Navbar.Brand as={Link} to="/aviv-kalmanson-23-9-2020">Herolo Weather Task</Navbar.Brand>
+                <Navbar.Brand as={Link} to={HOME_PATH}>Herolo Weather Task</Navbar.Brand>
                 <Button
                     style={{ backgroundColor: '#343A40', border: '1px solid #343A40' }}
                     onClick={() => { this.toggleHandle() }}
@@ -59,8 +61,8 @@ class NavigationBar extends Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">
-                        <Nav.Link as={Link} to="/aviv-kalmanson-23-9-2020">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/aviv-kalmanson-23-9-2020/favorites">
+                        <Nav.Link as={Link} to={HOME_PATH}>Home</Nav.Link>
+                        <Nav.Link as={Link} to={FAVORITES_PATH}>
                             Favorites </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
@@ -72,9 +74,9 @@ class NavigationBar extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggle: (newTemp, newUnit, fiveDays) => dispatch(actions.toggle(newTemp, newUnit, fiveDays)), //toggle C/F
-        toggleDarkMode: () => dispatch(actions.toggleDarkMode()), //TOGGLE DARK MODE
-        updateFavorites: (favorites) => dispatch(actions.updateFavorites(favorites)),
+        toggle: (newTemp, newUnit, fiveDays) => dispatch(navigationBarActions.toggle(newTemp, newUnit, fiveDays)), //toggle C/F
+        toggleDarkMode: () => dispatch(navigationBarActions.toggleDarkMode()), //TOGGLE DARK MODE
+        updateFavorites: (favorites) => dispatch(generalActions.updateFavorites(favorites)),
 
     }
 }
