@@ -62,8 +62,6 @@ const addToFavorites = () => {
     else{
         newFav = favorites.concat(current);
     }
-    console.log(current);
-    console.log(newFav);
     localStorage.setItem('favorites', JSON.stringify(newFav));
     return {
         type: actionTypes.ADD_TO_FAVORITES,
