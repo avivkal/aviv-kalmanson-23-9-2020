@@ -24,14 +24,13 @@ class Favorites extends Component {
                     axios.get('currentconditions/v1/' + favorite.key + API_PATH)])
                 )
             }
-            Promise.all(requests).then((response) => {
+            axios.all(requests).then((response) => {
                 for (let i = 0; i < response.length; i++) {
                     oldFavorites[i].fiveDaysForecast = this.props.unit === 'C' ? forLoopconvertFahrenheitToCelsius(response[i][0].data.DailyForecasts) : response[i][0].data.DailyForecasts;
                     oldFavorites[i].currentStateOfWeather = response[i][1].data[0].WeatherText;
                     oldFavorites[i].currentTemp = this.props.unit === 'C' ? Math.floor(response[i][1].data[0].Temperature.Metric.Value) : Math.floor(response[i][1].data[0].Temperature.Imperial.Value);
                     oldFavorites[i].icon = response[i][1].data[0].WeatherIcon < 10 ? '0' + response[i][1].data[0].WeatherIcon : response[i][1].data[0].WeatherIcon;
                 }
-                //at the end
                 this.props.updateFavorites(oldFavorites);
                 this.props.firstTimeFinishedFavorites();
             })

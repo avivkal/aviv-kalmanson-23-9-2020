@@ -62,7 +62,6 @@ const convertTemp = (arr, currentUnit) => {
 
 const convertFavoritesToCelsius = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
-    //f=>c
     for (let i = 0; i < favorites.length; i++) {
         favorites[i].currentTemp = convertFahrenheitToCelsius(favorites[i].currentTemp);
         favorites[i].fiveDaysForecast = forLoopconvertFahrenheitToCelsius(favorites[i].fiveDaysForecast);
@@ -74,7 +73,6 @@ const convertFavoritesToCelsius = () => {
 
 const convertFavoritesToFahrenheit = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
-    //c=>f
     for (let i = 0; i < favorites.length; i++) {
         favorites[i].currentTemp = convertCelsiusToFahrenheit(favorites[i].currentTemp);
         favorites[i].fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(favorites[i].fiveDaysForecast);

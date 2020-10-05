@@ -74,8 +74,8 @@ class NavigationBar extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggle: (newTemp, newUnit, fiveDays) => dispatch(navigationBarActions.toggle(newTemp, newUnit, fiveDays)), //toggle C/F
-        toggleDarkMode: () => dispatch(navigationBarActions.toggleDarkMode()), //TOGGLE DARK MODE
+        toggle: (newTemp, newUnit, fiveDays) => dispatch(navigationBarActions.toggle(newTemp, newUnit, fiveDays)), 
+        toggleDarkMode: () => dispatch(navigationBarActions.toggleDarkMode()), 
         updateFavorites: (favorites) => dispatch(generalActions.updateFavorites(favorites)),
 
     }

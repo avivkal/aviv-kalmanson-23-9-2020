@@ -12,10 +12,9 @@ const initialState = {
     modalText: '',
 }
 
-const reducer = (state = initialState, action) => {
-    //switch statement 
+const reducer = (state = initialState, action) => { 
     switch (action.type) {
-        case 'UPDATE_TEXT': //search text was updated
+        case 'UPDATE_TEXT': 
             return {
                 ...state,
                 searchText: action.val

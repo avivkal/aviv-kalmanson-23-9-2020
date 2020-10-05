@@ -37,7 +37,6 @@ class Home extends Component {
 
     }
     errorLog = () => {
-        //show toast message
         this.props.openModal('Note', 'Access denied to your location! No worries, we will use Tel Aviv as default.');
     }
 
