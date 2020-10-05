@@ -6,33 +6,33 @@ import { connect } from 'react-redux'
 import * as generalActions from '../../Store/Actions/actions'
 import * as navigationBarActions from '../../Store/Actions/navigationBarActions'
 import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, convertTemp } from '../../UtilityFunctions/functions';
-import { HOME_PATH,FAVORITES_PATH } from '../../Constants/const'
+import { HOME_PATH, FAVORITES_PATH } from '../../Constants/const'
 
 
 class NavigationBar extends Component {
     toggleHandle = () => {
 
-            const unit = this.props.unit;
-            let newUnit, currentNewTemp,newFavorites;
-            if(unit==='C'){
-                newUnit = 'F';
-                currentNewTemp = convertCelsiusToFahrenheit(this.props.current.currentTemp);
-                newFavorites = convertFavoritesToFahrenheit();
-            }
-            else{
-                newUnit = 'C';
-                currentNewTemp = convertFahrenheitToCelsius(this.props.current.currentTemp);
-                newFavorites = convertFavoritesToCelsius();
-            }
+        const unit = this.props.unit;
+        let newUnit, currentNewTemp, newFavorites;
+        if (unit === 'C') {
+            newUnit = 'F';
+            currentNewTemp = convertCelsiusToFahrenheit(this.props.current.currentTemp);
+            newFavorites = convertFavoritesToFahrenheit();
+        }
+        else {
+            newUnit = 'C';
+            currentNewTemp = convertFahrenheitToCelsius(this.props.current.currentTemp);
+            newFavorites = convertFavoritesToCelsius();
+        }
 
-            if (!existsInFavorites(this.props.favorites, this.props.current)) {
-                this.props.toggle(
-                    currentNewTemp,
-                    newUnit,
-                    convertTemp(this.props.current.fiveDaysForecast, unit)
-                );
-            }
-            this.props.updateFavorites(newFavorites);
+        if (!existsInFavorites(this.props.favorites, this.props.current)) {
+            this.props.toggle(
+                currentNewTemp,
+                newUnit,
+                convertTemp(this.props.current.fiveDaysForecast, unit)
+            );
+        }
+        this.props.updateFavorites(newFavorites);
 
     }
 
@@ -46,9 +46,9 @@ class NavigationBar extends Component {
                     onClick={() => { this.toggleHandle() }}
                     variant="secondary"
                 >
-                <span className={this.props.unit === 'C' ? 'active' : null}>°C </span>
-                <span>/</span>
-                <span className={this.props.unit === 'F' ? 'active' : null }> °F</span>  
+                    <span className={this.props.unit === 'C' ? 'active' : null}>°C </span>
+                    <span>/</span>
+                    <span className={this.props.unit === 'F' ? 'active' : null}> °F</span>
                 </Button>
 
                 <Button
@@ -75,8 +75,8 @@ class NavigationBar extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggle: (newTemp, newUnit, fiveDays) => dispatch(navigationBarActions.toggle(newTemp, newUnit, fiveDays)), 
-        toggleDarkMode: () => dispatch(navigationBarActions.toggleDarkMode()), 
+        toggle: (newTemp, newUnit, fiveDays) => dispatch(navigationBarActions.toggle(newTemp, newUnit, fiveDays)),
+        toggleDarkMode: () => dispatch(navigationBarActions.toggleDarkMode()),
         updateFavorites: (favorites) => dispatch(generalActions.updateFavorites(favorites)),
 
     }

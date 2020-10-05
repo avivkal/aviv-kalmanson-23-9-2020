@@ -1,9 +1,9 @@
 import { actionTypes } from '../actionTypes'
 import axios from 'axios'
-import {getFavorites} from '../../UtilityFunctions/localStorageFunctions'
-import {forLoopconvertFahrenheitToCelsius} from '../../UtilityFunctions/functions'
+import { getFavorites } from '../../UtilityFunctions/localStorageFunctions'
+import { forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
 import { API_PATH } from '../../Constants/const'
-import {updateFavorites} from './actions'
+import { updateFavorites } from './actions'
 import { store } from '../store'
 
 
@@ -22,17 +22,17 @@ const firstTimeFinishedFavorites = () => {
 
 const firstLoadFavorites = () => dispatch => {
     const oldFavorites = getFavorites();
-    let requests = [];    
+    let requests = [];
     for (const favorite of oldFavorites) {
-         requests.push(
-             axios.all([axios.get('forecasts/v1/daily/5day/' + favorite.key + API_PATH),
+        requests.push(
+            axios.all([axios.get('forecasts/v1/daily/5day/' + favorite.key + API_PATH),
             axios.get('currentconditions/v1/' + favorite.key + API_PATH)])
         )
     }
 
     const unit = store.getState().unit;
 
-     axios.all(requests).then((response) => {
+    axios.all(requests).then((response) => {
         for (let i = 0; i < response.length; i++) {
             oldFavorites[i].fiveDaysForecast = unit === 'C' ? forLoopconvertFahrenheitToCelsius(response[i][0].data.DailyForecasts) : response[i][0].data.DailyForecasts;
             oldFavorites[i].currentStateOfWeather = response[i][1].data[0].WeatherText;
@@ -45,7 +45,7 @@ const firstLoadFavorites = () => dispatch => {
 }
 
 export {
-   setFavoriteCityDetails,
-   firstTimeFinishedFavorites,
-   firstLoadFavorites
+    setFavoriteCityDetails,
+    firstTimeFinishedFavorites,
+    firstLoadFavorites
 }

@@ -1,7 +1,7 @@
 import { actionTypes } from '../actionTypes'
 import { store } from '../store'
 import { arrayExists, forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
-import {getFavorites,setFavorites} from '../../UtilityFunctions/localStorageFunctions'
+import { getFavorites, setFavorites } from '../../UtilityFunctions/localStorageFunctions'
 import axios from 'axios'
 import { API_PATH, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME } from '../../Constants/const'
 import { clear } from './actions'
@@ -100,21 +100,21 @@ const firstLoad = () => dispatch => { //get first data = Tel Aviv/Current locati
             dispatch(setCurrentCityDetails(data, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME));
             dispatch(firstTimeFinished());
         }).then(() => {
-            navigator.geolocation.getCurrentPosition((pos)=>{ //if success
-            let crd = pos.coords;
-            axios.get('locations/v1/cities/geoposition/search' + API_PATH + '&q='
-            + crd.latitude + '%2C' + crd.longitude).then(data => {
-                dispatch(submit(data.data.Key, data.data.EnglishName));
-                dispatch(firstTimeFinished());
-            }).catch(error => dispatch(openModal('Error', error.toString())));
+            navigator.geolocation.getCurrentPosition((pos) => { //if success
+                let crd = pos.coords;
+                axios.get('locations/v1/cities/geoposition/search' + API_PATH + '&q='
+                    + crd.latitude + '%2C' + crd.longitude).then(data => {
+                        dispatch(submit(data.data.Key, data.data.EnglishName));
+                        dispatch(firstTimeFinished());
+                    }).catch(error => dispatch(openModal('Error', error.toString())));
             },
-            //if error
-             ()=> {dispatch(openModal('Note', 'Access denied to your location! No worries, we will use Tel Aviv as default.'));},
-            { //settings
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            });
+                //if error
+                () => { dispatch(openModal('Note', 'Access denied to your location! No worries, we will use Tel Aviv as default.')); },
+                { //settings
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                });
         }).catch(error => dispatch(openModal('Error', error.toString())));
 }
 

@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
 import './home.scss';
 import { Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import { CSSTransitionGroup } from 'react-transition-group';
-import { API_PATH, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME } from '../../Constants/const'
 import * as generalActions from '../../Store/Actions/actions'
 import * as homeActions from '../../Store/Actions/homeActions'
 import { existsInFavorites, findKeyByName } from '../../UtilityFunctions/functions'
-import {getFavorites} from '../../UtilityFunctions/localStorageFunctions'
+import { getFavorites } from '../../UtilityFunctions/localStorageFunctions'
 import CustomModal from '../Modal/customModal'
 import JumbotronContent from '../Jumbotron/jumbotronContent'
 
@@ -55,22 +53,22 @@ class Home extends Component {
                     transitionEnterTimeout={1000}
                     transitionLeaveTimeout={1000}>
 
-                    <JumbotronContent 
-                    unit = {this.props.unit}
-                    current = {this.props.current}
-                    favorites = {this.props.favorites}
-                    click={this.addToFavoritesHandler}
-                    darkModeText={this.props.darkModeText}
+                    <JumbotronContent
+                        unit={this.props.unit}
+                        current={this.props.current}
+                        favorites={this.props.favorites}
+                        click={this.addToFavoritesHandler}
+                        darkModeText={this.props.darkModeText}
                     />
 
                 </CSSTransitionGroup>
 
 
-                <CustomModal 
-                modalTitle={this.props.modalTitle}
-                modalText={this.props.modalText}
-                closeModal={this.props.closeModal} //function
-                show={this.props.show}
+                <CustomModal
+                    modalTitle={this.props.modalTitle}
+                    modalText={this.props.modalText}
+                    closeModal={this.props.closeModal}
+                    show={this.props.show}
                 />
             </div>
         );
@@ -107,8 +105,8 @@ const mapDispatchToProps = (dispatch) => {
         openModal: (title, text) => dispatch(homeActions.openModal(title, text)),
         updateFavorites: (favorites) => dispatch(generalActions.updateFavorites(favorites)),
         submit: (cityKey, cityName) => dispatch(homeActions.submit(cityKey, cityName)),
-        changeHandler : (event) => dispatch(homeActions.changeHandler(event)),
-        firstLoad : () => dispatch(homeActions.firstLoad()),
+        changeHandler: (event) => dispatch(homeActions.changeHandler(event)),
+        firstLoad: () => dispatch(homeActions.firstLoad()),
 
     }
 }

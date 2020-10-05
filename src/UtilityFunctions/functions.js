@@ -51,7 +51,7 @@ const forLoopconvertCelsiusToFahrenheit = (arr) => {
 
 
 const convertTemp = (arr, currentUnit) => {
-    if(arrayExists(arr)){
+    if (arrayExists(arr)) {
         let newArr = [...arr];
         if (currentUnit === 'F') {
             return forLoopconvertFahrenheitToCelsius(newArr);
@@ -60,7 +60,7 @@ const convertTemp = (arr, currentUnit) => {
             return forLoopconvertCelsiusToFahrenheit(newArr);
         }
     }
-   return arr;
+    return arr;
 }
 
 const convertFavoritesToCelsius = () => {
@@ -70,7 +70,7 @@ const convertFavoritesToCelsius = () => {
     //     favorites[i].fiveDaysForecast = forLoopconvertFahrenheitToCelsius(favorites[i].fiveDaysForecast);
     // }
 
-    favorites.map(currentFavorite=>{
+    favorites.map(currentFavorite => {
         currentFavorite.currentTemp = convertFahrenheitToCelsius(currentFavorite.currentTemp);
         currentFavorite.fiveDaysForecast = forLoopconvertFahrenheitToCelsius(currentFavorite.fiveDaysForecast);
         return currentFavorite;
@@ -87,7 +87,7 @@ const convertFavoritesToFahrenheit = () => {
     //     favorites[i].fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(favorites[i].fiveDaysForecast);
     // }
 
-    favorites.map(currentFavorite=>{
+    favorites.map(currentFavorite => {
         currentFavorite.currentTemp = convertCelsiusToFahrenheit(currentFavorite.currentTemp);
         currentFavorite.fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(currentFavorite.fiveDaysForecast);
         return currentFavorite;
@@ -98,7 +98,7 @@ const convertFavoritesToFahrenheit = () => {
 
 const convertIconPath = (icon) => {
     //example: 1 => 01
-    if(icon<10){
+    if (icon < 10) {
         return '0' + icon;
     }
     return icon;
@@ -106,7 +106,7 @@ const convertIconPath = (icon) => {
 
 
 const arrayExists = (arr) => {
-    return arr !== undefined && arr !== null && arr.length>0;
+    return arr !== undefined && arr !== null && arr.length > 0;
 }
 export {
     convertCelsiusToFahrenheit,

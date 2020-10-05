@@ -2,26 +2,26 @@ import React from 'react';
 import { DAYS } from '../../Constants/const';
 import { Card, NavLink } from 'react-bootstrap';
 import './card.scss';
-import {ICON_PATH_1, ICON_PATH_2} from '../../Constants/const'
-import {convertIconPath} from '../../UtilityFunctions/functions'
+import { ICON_PATH_1, ICON_PATH_2 } from '../../Constants/const'
+import { convertIconPath } from '../../UtilityFunctions/functions'
 
 const card = (props) => {
-    if(props.isFav){
+    if (props.isFav) {
         return (
             <Card className="col-xl-2 favorites-cards" onClick={props.click} as={NavLink}>
-            <Card.Body>
-                <Card.Title className="cards-text">{props.currentFavorite.cityName}</Card.Title>
-                <div className="cards-text">
-                    {props.currentTemp} °{props.unit}
-                    <div className="current-state" >
-                    {props.currentFavorite.currentStateOfWeather}
+                <Card.Body>
+                    <Card.Title className="cards-text">{props.currentFavorite.cityName}</Card.Title>
+                    <div className="cards-text">
+                        {props.currentTemp} °{props.unit}
+                        <div className="current-state" >
+                            {props.currentFavorite.currentStateOfWeather}
+                        </div>
+                        <div className="image">
+                            <img src={ICON_PATH_1 + props.currentFavorite.icon + ICON_PATH_2} alt="weather icon day"></img>
+                        </div>
                     </div>
-                    <div className="image">
-                    <img src={ICON_PATH_1 + props.currentFavorite.icon + ICON_PATH_2} alt="weather icon day"></img>
-                    </div>
-                </div>
-            </Card.Body>
-        </Card>
+                </Card.Body>
+            </Card>
         );
     }
     return (
@@ -34,7 +34,7 @@ const card = (props) => {
                         <span>Day:</span>
                         <img src={ICON_PATH_1 + convertIconPath(props.currentDay.Day.Icon) + ICON_PATH_2} alt="weather icon day"></img>
                         <span>Night:</span>
-                        <img src={ICON_PATH_1 + convertIconPath(props.currentDay.Night.Icon)  + ICON_PATH_2} alt="weather icon night"></img>
+                        <img src={ICON_PATH_1 + convertIconPath(props.currentDay.Night.Icon) + ICON_PATH_2} alt="weather icon night"></img>
                     </div>
                 </div>
             </Card.Body>

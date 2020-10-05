@@ -15,7 +15,7 @@ const toggleDarkMode = () => {
     }
 }
 
-export{
+export {
     toggle,
     toggleDarkMode
 }

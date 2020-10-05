@@ -1,13 +1,13 @@
 import { actionTypes } from '../actionTypes'
-import {setFavorites} from '../../UtilityFunctions/localStorageFunctions'
+import { setFavorites } from '../../UtilityFunctions/localStorageFunctions'
 
-const clear = () => { 
+const clear = () => {
     return {
         type: actionTypes.CLEAR,
     }
 }
 
-const updateFavorites = (favorites) => { 
+const updateFavorites = (favorites) => {
     setFavorites(favorites);
     return {
         type: actionTypes.UPDATE_FAVORITES,
