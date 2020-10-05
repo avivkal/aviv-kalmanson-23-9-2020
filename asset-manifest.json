@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/aviv-kalmanson-23-9-2020/static/css/main.a8323008.chunk.css",
-    "main.js": "/aviv-kalmanson-23-9-2020/static/js/main.d35dd6dd.chunk.js",
-    "main.js.map": "/aviv-kalmanson-23-9-2020/static/js/main.d35dd6dd.chunk.js.map",
+    "main.css": "/aviv-kalmanson-23-9-2020/static/css/main.830cf1f0.chunk.css",
+    "main.js": "/aviv-kalmanson-23-9-2020/static/js/main.5aaa9980.chunk.js",
+    "main.js.map": "/aviv-kalmanson-23-9-2020/static/js/main.5aaa9980.chunk.js.map",
     "runtime-main.js": "/aviv-kalmanson-23-9-2020/static/js/runtime-main.d6591b2f.js",
     "runtime-main.js.map": "/aviv-kalmanson-23-9-2020/static/js/runtime-main.d6591b2f.js.map",
     "static/css/2.2b6fbda5.chunk.css": "/aviv-kalmanson-23-9-2020/static/css/2.2b6fbda5.chunk.css",
-    "static/js/2.68d4981a.chunk.js": "/aviv-kalmanson-23-9-2020/static/js/2.68d4981a.chunk.js",
-    "static/js/2.68d4981a.chunk.js.map": "/aviv-kalmanson-23-9-2020/static/js/2.68d4981a.chunk.js.map",
+    "static/js/2.1dc3cb20.chunk.js": "/aviv-kalmanson-23-9-2020/static/js/2.1dc3cb20.chunk.js",
+    "static/js/2.1dc3cb20.chunk.js.map": "/aviv-kalmanson-23-9-2020/static/js/2.1dc3cb20.chunk.js.map",
     "index.html": "/aviv-kalmanson-23-9-2020/index.html",
-    "precache-manifest.b72a73791271dd939c4ccf3f30d61443.js": "/aviv-kalmanson-23-9-2020/precache-manifest.b72a73791271dd939c4ccf3f30d61443.js",
+    "precache-manifest.0a98272ed98e9fb700433f8547c48121.js": "/aviv-kalmanson-23-9-2020/precache-manifest.0a98272ed98e9fb700433f8547c48121.js",
     "service-worker.js": "/aviv-kalmanson-23-9-2020/service-worker.js",
     "static/css/2.2b6fbda5.chunk.css.map": "/aviv-kalmanson-23-9-2020/static/css/2.2b6fbda5.chunk.css.map",
-    "static/css/main.a8323008.chunk.css.map": "/aviv-kalmanson-23-9-2020/static/css/main.a8323008.chunk.css.map",
-    "static/js/2.68d4981a.chunk.js.LICENSE.txt": "/aviv-kalmanson-23-9-2020/static/js/2.68d4981a.chunk.js.LICENSE.txt",
+    "static/css/main.830cf1f0.chunk.css.map": "/aviv-kalmanson-23-9-2020/static/css/main.830cf1f0.chunk.css.map",
+    "static/js/2.1dc3cb20.chunk.js.LICENSE.txt": "/aviv-kalmanson-23-9-2020/static/js/2.1dc3cb20.chunk.js.LICENSE.txt",
     "static/media/semantic.min.css": "/aviv-kalmanson-23-9-2020/static/media/outline-icons.ef60a4f6.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.d6591b2f.js",
     "static/css/2.2b6fbda5.chunk.css",
-    "static/js/2.68d4981a.chunk.js",
-    "static/css/main.a8323008.chunk.css",
-    "static/js/main.d35dd6dd.chunk.js"
+    "static/js/2.1dc3cb20.chunk.js",
+    "static/css/main.830cf1f0.chunk.css",
+    "static/js/main.5aaa9980.chunk.js"
   ]
 }

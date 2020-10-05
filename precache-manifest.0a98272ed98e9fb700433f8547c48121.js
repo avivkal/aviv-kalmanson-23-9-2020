@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f2cbcd8a6d247a8658de81557dd09a2a",
+    "revision": "9daf7cd18dc8bc24741df0988f8c35ca",
     "url": "/aviv-kalmanson-23-9-2020/index.html"
   },
   {
-    "revision": "f83aba015824ad6bbef9",
+    "revision": "752f21041a2aa0d99c7f",
     "url": "/aviv-kalmanson-23-9-2020/static/css/2.2b6fbda5.chunk.css"
   },
   {
-    "revision": "f3cb88bb1e1452dd98e3",
-    "url": "/aviv-kalmanson-23-9-2020/static/css/main.a8323008.chunk.css"
+    "revision": "2d276d0a622c63a93c89",
+    "url": "/aviv-kalmanson-23-9-2020/static/css/main.830cf1f0.chunk.css"
   },
   {
-    "revision": "f83aba015824ad6bbef9",
-    "url": "/aviv-kalmanson-23-9-2020/static/js/2.68d4981a.chunk.js"
+    "revision": "752f21041a2aa0d99c7f",
+    "url": "/aviv-kalmanson-23-9-2020/static/js/2.1dc3cb20.chunk.js"
   },
   {
     "revision": "4d47ffde3dc69784e8e23fd910817ef8",
-    "url": "/aviv-kalmanson-23-9-2020/static/js/2.68d4981a.chunk.js.LICENSE.txt"
+    "url": "/aviv-kalmanson-23-9-2020/static/js/2.1dc3cb20.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f3cb88bb1e1452dd98e3",
-    "url": "/aviv-kalmanson-23-9-2020/static/js/main.d35dd6dd.chunk.js"
+    "revision": "2d276d0a622c63a93c89",
+    "url": "/aviv-kalmanson-23-9-2020/static/js/main.5aaa9980.chunk.js"
   },
   {
     "revision": "e301be6fe3c5a056972a",
