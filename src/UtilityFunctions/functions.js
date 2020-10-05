@@ -23,7 +23,7 @@ const existsInFavorites = (x, favorites) => {
 }
 
 const forLoopconvertFahrenheitToCelsius = (arr) => {
-    if ((Array.isArray(arr) && arr.length)) {
+    if (arrayExists(arr)) {
 
         arr.map((current) => {
             current.Temperature.Minimum.Value = convertFahrenheitToCelsius(current.Temperature.Minimum.Value);
@@ -37,7 +37,7 @@ const forLoopconvertFahrenheitToCelsius = (arr) => {
 }
 
 const forLoopconvertCelsiusToFahrenheit = (arr) => {
-    if ((Array.isArray(arr) && arr.length)) {
+    if (arrayExists(arr)) {
         arr.map((current) => {
             current.Temperature.Minimum.Value = convertCelsiusToFahrenheit(current.Temperature.Minimum.Value);
             current.Temperature.Maximum.Value = convertCelsiusToFahrenheit(current.Temperature.Maximum.Value);
@@ -62,10 +62,16 @@ const convertTemp = (arr, currentUnit) => {
 
 const convertFavoritesToCelsius = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
-    for (let i = 0; i < favorites.length; i++) {
-        favorites[i].currentTemp = convertFahrenheitToCelsius(favorites[i].currentTemp);
-        favorites[i].fiveDaysForecast = forLoopconvertFahrenheitToCelsius(favorites[i].fiveDaysForecast);
-    }
+    // for (let i = 0; i < favorites.length; i++) {
+    //     favorites[i].currentTemp = convertFahrenheitToCelsius(favorites[i].currentTemp);
+    //     favorites[i].fiveDaysForecast = forLoopconvertFahrenheitToCelsius(favorites[i].fiveDaysForecast);
+    // }
+
+    favorites.map(currentFavorite=>{
+        currentFavorite.currentTemp = convertFahrenheitToCelsius(currentFavorite.currentTemp);
+        currentFavorite.fiveDaysForecast = forLoopconvertFahrenheitToCelsius(currentFavorite.fiveDaysForecast);
+        return currentFavorite;
+    });
 
     return favorites;
 
@@ -73,10 +79,16 @@ const convertFavoritesToCelsius = () => {
 
 const convertFavoritesToFahrenheit = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
-    for (let i = 0; i < favorites.length; i++) {
-        favorites[i].currentTemp = convertCelsiusToFahrenheit(favorites[i].currentTemp);
-        favorites[i].fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(favorites[i].fiveDaysForecast);
-    }
+    // for (let i = 0; i < favorites.length; i++) {
+    //     favorites[i].currentTemp = convertCelsiusToFahrenheit(favorites[i].currentTemp);
+    //     favorites[i].fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(favorites[i].fiveDaysForecast);
+    // }
+
+    favorites.map(currentFavorite=>{
+        currentFavorite.currentTemp = convertCelsiusToFahrenheit(currentFavorite.currentTemp);
+        currentFavorite.fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(currentFavorite.fiveDaysForecast);
+        return currentFavorite;
+    });
     return favorites;
 }
 
@@ -88,6 +100,11 @@ const convertIconPath = (icon) => {
     }
     return icon;
 }
+
+
+const arrayExists = (arr) => {
+    return arr !== undefined && arr !== null;
+}
 export {
     convertCelsiusToFahrenheit,
     convertFahrenheitToCelsius,
@@ -98,6 +115,7 @@ export {
     convertTemp,
     convertFavoritesToCelsius,
     convertFavoritesToFahrenheit,
-    convertIconPath
+    convertIconPath,
+    arrayExists
 }
 

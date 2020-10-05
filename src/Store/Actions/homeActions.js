@@ -1,6 +1,6 @@
 import { actionTypes } from '../actionTypes'
 import { store } from '../store'
-import { forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
+import { arrayExists, forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
 import {getFavorites,setFavorites} from '../../UtilityFunctions/localStorageFunctions'
 
 const updateText = (val) => {
@@ -47,7 +47,7 @@ const addToFavorites = () => {
     const favorites = getFavorites();
     const current = store.getState().current;
     let newFav = [];
-    if (!(Array.isArray(favorites) && favorites.length)) {
+    if (!arrayExists(favorites)) {
         newFav.push(current);
     }
     else {

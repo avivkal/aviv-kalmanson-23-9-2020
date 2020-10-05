@@ -5,33 +5,34 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import * as generalActions from '../../Store/Actions/actions'
 import * as navigationBarActions from '../../Store/Actions/navigationBarActions'
-import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, forLoopconvertCelsiusToFahrenheit, forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions';
+import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, forLoopconvertCelsiusToFahrenheit, forLoopconvertFahrenheitToCelsius, convertTemp } from '../../UtilityFunctions/functions';
 import { HOME_PATH,FAVORITES_PATH } from '../../Constants/const'
 
 
 class NavigationBar extends Component {
     toggleHandle = () => {
-        if (this.props.unit === 'C') {
-            if (!existsInFavorites(this.props.favorites, this.props.current)) {
-                this.props.toggle(
-                    convertCelsiusToFahrenheit(this.props.current.currentTemp),
-                    'F',
-                    forLoopconvertCelsiusToFahrenheit(this.props.current.fiveDaysForecast)
-                );
-            }
-            this.props.updateFavorites(convertFavoritesToFahrenheit());
 
-        }
-        else {
+            const unit = this.props.unit;
+            let newUnit, currentNewTemp,newFavorites;
+            if(unit==='C'){
+                newUnit = 'F';
+                currentNewTemp = convertCelsiusToFahrenheit(this.props.current.currentTemp);
+                newFavorites = convertFavoritesToFahrenheit();
+            }
+            else{
+                newUnit = 'C';
+                currentNewTemp = convertFahrenheitToCelsius(this.props.current.currentTemp);
+                newFavorites = convertFavoritesToCelsius();
+            }
+
             if (!existsInFavorites(this.props.favorites, this.props.current)) {
                 this.props.toggle(
-                    convertFahrenheitToCelsius(this.props.current.currentTemp),
-                    'C',
-                    forLoopconvertFahrenheitToCelsius(this.props.current.fiveDaysForecast)
+                    currentNewTemp,
+                    newUnit,
+                    convertTemp(this.props.current.fiveDaysForecast, unit)
                 );
             }
-            this.props.updateFavorites(convertFavoritesToCelsius());
-        }
+            this.props.updateFavorites(newFavorites);
 
     }
 

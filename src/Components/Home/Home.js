@@ -1,26 +1,23 @@
 import React, { Component } from 'react'
-import { Button, Jumbotron, Row, Col, Modal } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { BsHeartFill, BsHeart } from 'react-icons/bs';
 import './home.scss';
 import { Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import { CSSTransitionGroup } from 'react-transition-group';
-import { ICON_PATH_1, ICON_PATH_2, API_PATH, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME } from '../../Constants/const'
+import { API_PATH, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME } from '../../Constants/const'
 import * as generalActions from '../../Store/Actions/actions'
 import * as homeActions from '../../Store/Actions/homeActions'
 import { existsInFavorites, findKeyByName } from '../../UtilityFunctions/functions'
-import CardsList from '../CardsList/cardsList'
 import {getFavorites} from '../../UtilityFunctions/localStorageFunctions'
-
-
+import CustomModal from '../Modal/customModal'
+import JumbotronContent from '../Jumbotron/jumbotronContent'
 
 class Home extends Component {
     componentDidMount() {
         const oldFavorites = getFavorites();
         this.props.updateFavorites(oldFavorites);
-        if (this.props.first) {
+        if (this.props.first) {  //actions async
             axios.all([axios.get('forecasts/v1/daily/5day/' + DEFAULT_CITY_KEY + API_PATH),
             axios.get('currentconditions/v1/' + DEFAULT_CITY_KEY + API_PATH)])
                 .then(data => {
@@ -36,11 +33,14 @@ class Home extends Component {
         }
 
     }
+
+    //actions async
     errorLog = () => {
         this.props.openModal('Note', 'Access denied to your location! No worries, we will use Tel Aviv as default.');
     }
 
 
+    //actions async
     success = (pos) => {
         let crd = pos.coords;
         axios.get('locations/v1/cities/geoposition/search' + API_PATH + '&q='
@@ -50,6 +50,7 @@ class Home extends Component {
             }).catch(error => this.props.openModal('Error', error.toString()))
     }
 
+    //actions async
     changeHandler = (event) => {
         this.props.updateText(event.target.value);
         axios.get('locations/v1/cities/autocomplete' + API_PATH + '&q=' + event.target.value)
@@ -68,6 +69,7 @@ class Home extends Component {
             ).catch(error => this.props.openModal('Error', error.toString()));
     }
 
+    //actions async
     submit = (cityKey = this.props.searchText[0].key, cityName = this.props.searchText[0].text.split(',')[0]) => {
         axios.all([axios.get('forecasts/v1/daily/5day/' + cityKey + API_PATH),
         axios.get('currentconditions/v1/' + cityKey + API_PATH)])
@@ -109,48 +111,24 @@ class Home extends Component {
                     transitionAppearTimeout={1000}
                     transitionEnterTimeout={1000}
                     transitionLeaveTimeout={1000}>
-                    <Jumbotron className={this.props.darkMode ? "jumbotron-dark container" : "jumbotron-light container"}>
-                        <Row className="show-grid">
-                            <Col xs={6} className="d-flex justify-content-start">
-                                <section >
-                                    <h3 className={'DarkText'}>{this.props.current.cityName}</h3>
-                                    <h3 className={'DarkText'}>{this.props.current.currentTemp} °{this.props.unit}</h3>
-                                    <img src={ICON_PATH_1 + this.props.current.icon + ICON_PATH_2} alt="weather icon"></img>
-                                </section>                        </Col>
-                            <Col xs={6} className="d-flex justify-content-end">
-                                <section>
-                                    {existsInFavorites(this.props.current, this.props.favorites) ? <BsHeartFill className="icons" /> : <BsHeart className="icons" />}
-                                    <Button variant="dark" className="add-to-favorites" onClick={this.addToFavoritesHandler}>{existsInFavorites(this.props.current, this.props.favorites) ? 'Remove from favorites' : 'Add to favorites'}</Button>
-                                </section>
-                            </Col>
-                        </Row>
-                        <h1 className="dark-text state-of-weather">{this.props.current.currentStateOfWeather}</h1>
-                        <div className="cards-list-home">
-                        <CardsList
-                            current={this.props.current}
-                            today={new Date().getDay()}
-                            unit={this.props.unit}
-                            isFav={false}
-                        />
 
-                        </div>
-                        
-                    </Jumbotron>
+                    <JumbotronContent 
+                    unit = {this.props.unit}
+                    current = {this.props.current}
+                    favorites = {this.props.favorites}
+                    click={this.addToFavoritesHandler}
+                    darkMode={this.props.darkMode}
+                    />
 
                 </CSSTransitionGroup>
 
-                <Modal show={this.props.show} onHide={this.props.closeModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>{this.props.modalTitle}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>{this.props.modalText}</Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.props.closeModal}>
-                            Close
-          </Button>
-                    </Modal.Footer>
-                </Modal>
 
+                <CustomModal 
+                modalTitle={this.props.modalTitle}
+                modalText={this.props.modalText}
+                closeModal={this.props.closeModal} //function
+                show={this.props.show}
+                />
             </div>
         );
     }
