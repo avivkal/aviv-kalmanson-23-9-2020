@@ -1,4 +1,4 @@
-import { actionTypes } from './actionTypes'
+import { actionTypes } from '../actionTypes'
 import {setFavorites} from '../../UtilityFunctions/localStorageFunctions'
 
 const clear = () => { 

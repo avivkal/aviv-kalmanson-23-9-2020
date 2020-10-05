@@ -1,5 +1,5 @@
-import { actionTypes } from './actionTypes'
-import { store } from '../StoreSetup/store'
+import { actionTypes } from '../actionTypes'
+import { store } from '../store'
 import { forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
 import {getFavorites,setFavorites} from '../../UtilityFunctions/localStorageFunctions'
 
