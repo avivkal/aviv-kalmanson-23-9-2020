@@ -1,21 +1,23 @@
+@import './Constants/colors.scss';
+
 .app {
   text-align: center;
 }
 
 .dark{
-  background-color: #343A40;
+  background-color: $background-dark;
   min-height: 100vh;
 }
 .light{
-  background-color: white;
+  background-color: $background-white;
   min-height: 100vh;
 }
 
 .dark-text{
-  color: black;
+  color: $background-black;
 }
 .light-text{
-  color: white;
+  color: $background-white;
 }
 
 .cards-appear {
@@ -27,5 +29,5 @@
 }
 
 .active{
-  color: rgb(40, 213, 236);
+  color: $background-active;
 }

@@ -11,14 +11,15 @@ const card = (props) => {
             <Card className="col-xl-2 favorites-cards" onClick={props.click} as={NavLink}>
             <Card.Body>
                 <Card.Title className="cards-text">{props.currentFavorite.cityName}</Card.Title>
-                <Card.Text className="cards-text">
+                <div className="cards-text">
                     {props.currentTemp} °{props.unit}
-                    <br /><br />
+                    <div className="current-state" >
                     {props.currentFavorite.currentStateOfWeather}
-                    <br />
+                    </div>
+                    <div className="image">
                     <img src={ICON_PATH_1 + props.currentFavorite.icon + ICON_PATH_2} alt="weather icon day"></img>
-                    <br /><br /><br /><br />
-                </Card.Text>
+                    </div>
+                </div>
             </Card.Body>
         </Card>
         );
@@ -27,8 +28,7 @@ const card = (props) => {
         <Card className="col-xl-2 cards-style">
             <Card.Body >
                 <Card.Title className="cards-title">{DAYS[(props.today + props.index) % 7]}</Card.Title>
-                <br />
-                <div className="cards-text">
+                <div className="cards-text card-margin">
                     {props.currentDay.Temperature.Minimum.Value}  - {props.currentDay.Temperature.Maximum.Value} °{props.unit}
                     <div className="row icons-day-night justify-content-center">
                         <span>Day:</span>

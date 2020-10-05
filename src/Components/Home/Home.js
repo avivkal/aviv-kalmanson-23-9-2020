@@ -124,11 +124,8 @@ class Home extends Component {
                                 </section>
                             </Col>
                         </Row>
-                        <br /><br />
                         <h1 className="dark-text state-of-weather">{this.props.current.currentStateOfWeather}</h1>
-                        <br /><br /><br /> <br /><br />
-
-
+                        <div className="cards-list-home">
                         <CardsList
                             current={this.props.current}
                             today={new Date().getDay()}
@@ -136,6 +133,8 @@ class Home extends Component {
                             isFav={false}
                         />
 
+                        </div>
+                        
                     </Jumbotron>
 
                 </CSSTransitionGroup>
