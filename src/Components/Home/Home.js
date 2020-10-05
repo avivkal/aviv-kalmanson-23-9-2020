@@ -12,12 +12,13 @@ import * as generalActions from '../../Store/Actions/actions'
 import * as homeActions from '../../Store/Actions/homeActions'
 import { existsInFavorites, findKeyByName } from '../../UtilityFunctions/functions'
 import CardsList from '../CardsList/cardsList'
+import {getFavorites} from '../../UtilityFunctions/localStorageFunctions'
 
 
 
 class Home extends Component {
     componentDidMount() {
-        const oldFavorites = JSON.parse(localStorage.getItem('favorites'));
+        const oldFavorites = getFavorites();
         this.props.updateFavorites(oldFavorites);
         if (this.props.first) {
             axios.all([axios.get('forecasts/v1/daily/5day/' + DEFAULT_CITY_KEY + API_PATH),

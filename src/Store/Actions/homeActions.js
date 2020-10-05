@@ -1,6 +1,7 @@
 import { actionTypes } from './actionTypes'
 import { store } from '../StoreSetup/store'
 import { forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
+import {getFavorites,setFavorites} from '../../UtilityFunctions/localStorageFunctions'
 
 const updateText = (val) => {
     return {
@@ -43,7 +44,7 @@ const updateForecast = (arr) => {
 }
 
 const addToFavorites = () => {
-    const favorites = JSON.parse(localStorage.getItem('favorites'));
+    const favorites = getFavorites();
     const current = store.getState().current;
     let newFav = [];
     if (!(Array.isArray(favorites) && favorites.length)) {
@@ -52,7 +53,7 @@ const addToFavorites = () => {
     else {
         newFav = favorites.concat(current);
     }
-    localStorage.setItem('favorites', JSON.stringify(newFav));
+    setFavorites(newFav);
     return {
         type: actionTypes.ADD_TO_FAVORITES,
         favorites: newFav
@@ -68,7 +69,7 @@ const firstTimeFinished = () => {
 const removeFromFavorites = (key) => {
     const favoriteCities = store.getState().favorites;
     const newFavList = favoriteCities.filter(city => city.key !== key);
-    localStorage.setItem('favorites', JSON.stringify(newFavList));
+    setFavorites(newFavList);
     return {
         type: actionTypes.REMOVE_FROM_FAVORITES,
         favorites: newFavList

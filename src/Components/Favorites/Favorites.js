@@ -9,12 +9,13 @@ import { API_PATH } from '../../Constants/const'
 import { forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
 import CardsList from '../CardsList/cardsList'
 import { HOME_PATH } from '../../Constants/const'
+import {getFavorites} from '../../UtilityFunctions/localStorageFunctions'
 
 
 class Favorites extends Component {
 
     componentDidMount() {
-        const oldFavorites = JSON.parse(localStorage.getItem('favorites'));
+        const oldFavorites = getFavorites();
         let requests = [];
         if (this.props.firstTimeFavorites) {
             for (const favorite of oldFavorites) {

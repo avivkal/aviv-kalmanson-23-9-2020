@@ -1,4 +1,5 @@
 import { actionTypes } from './actionTypes'
+import {setFavorites} from '../../UtilityFunctions/localStorageFunctions'
 
 const clear = () => { //multiple
     return {
@@ -7,7 +8,7 @@ const clear = () => { //multiple
 }
 
 const updateFavorites = (favorites) => { //multiple
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    setFavorites(favorites);
     return {
         type: actionTypes.UPDATE_FAVORITES,
         favorites
