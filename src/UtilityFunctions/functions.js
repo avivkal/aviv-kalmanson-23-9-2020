@@ -19,7 +19,7 @@ const existsInFavorites = (x, favorites) => {
     if (!(Array.isArray(favorites) && favorites.length))
         return false;
     const found = favorites.find(favorite => x.key === favorite.key);
-    return found === undefined ? false : true;
+    return found !== undefined;
 }
 
 const forLoopconvertFahrenheitToCelsius = (arr) => {
