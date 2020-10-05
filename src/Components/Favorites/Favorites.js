@@ -46,7 +46,7 @@ class Favorites extends Component {
 
     render() {
         return (
-            <div className={this.props.darkMode ? 'dark' : 'light'}>
+            <div className={this.props.darkModeText}>
                 <CSSTransitionGroup transitionName="cards"
                     transitionAppear={true}
                     transitionAppearTimeout={1000}
@@ -57,7 +57,7 @@ class Favorites extends Component {
                         click={(currentFavorite) => this.handleClickOnCard(currentFavorite)}
                         unit={this.props.unit}
                         favorites={this.props.favorites}
-                        darkMode={this.props.darkMode}
+                        darkModeText={this.props.darkModeText}
                         isFav={true}
                     />
                 </CSSTransitionGroup>
@@ -72,7 +72,8 @@ const mapStateToProps = (state) => {
         current: state.current,
         darkMode: state.darkmode,
         unit: state.unit,
-        firstTimeFavorites: state.firstTimeFavorites
+        firstTimeFavorites: state.firstTimeFavorites,
+        darkModeText: state.darkModeText
     }
 }
 

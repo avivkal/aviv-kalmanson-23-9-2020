@@ -10,6 +10,7 @@ const initialState = {
     show: false,
     modalTitle: '',
     modalText: '',
+    darkModeText: 'light'
 }
 
 const reducer = (state = initialState, action) => { 
@@ -81,7 +82,8 @@ const reducer = (state = initialState, action) => {
             }
         case 'TOGGLE_DARK_MODE':
             return Object.assign({}, state, {
-                darkmode: !state.darkmode
+                darkmode: !state.darkmode,
+                darkModeText: state.darkModeText==='light' ? 'dark' : 'light'
             });
         case 'CLOSE_MODAL':
             return {

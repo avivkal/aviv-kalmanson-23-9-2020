@@ -1,4 +1,13 @@
+@import '../../Constants/colors.scss';
+
 .no-favorites-h1{
     padding-top:50px;
 }
   
+.text-dark-mode-active {
+    color: $background-white;
+}
+    
+.text-light-mode-active {
+    color: $background-black;
+}

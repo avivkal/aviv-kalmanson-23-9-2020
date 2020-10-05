@@ -16,7 +16,7 @@ const cardsList = (props) => {
                         currentTemp={currentFavorite.currentTemp}
                         unit={props.unit} 
                         isFav= {props.isFav}/>
-                }) : <h1 className={props.darkMode ? 'light-text no-favorites-h1' : 'dark-text no-favorites-h1'}>You don't have any favorites currently</h1>}
+                }) : <h1 className={'text-' + props.darkModeText + '-mode-active no-favorites-h1'}>You don't have any favorites currently</h1>}
             </div>
         </div>
 

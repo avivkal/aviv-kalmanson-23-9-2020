@@ -103,7 +103,7 @@ const convertIconPath = (icon) => {
 
 
 const arrayExists = (arr) => {
-    return arr !== undefined && arr !== null;
+    return arr !== undefined && arr !== null && arr.length>0;
 }
 export {
     convertCelsiusToFahrenheit,

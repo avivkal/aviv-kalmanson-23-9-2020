@@ -90,7 +90,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div className={this.props.darkMode ? 'dark' : 'light'}>
+            <div className={this.props.darkModeText}>
 
                 <section className="search">
                     <Dropdown
@@ -117,7 +117,7 @@ class Home extends Component {
                     current = {this.props.current}
                     favorites = {this.props.favorites}
                     click={this.addToFavoritesHandler}
-                    darkMode={this.props.darkMode}
+                    darkModeText={this.props.darkModeText}
                     />
 
                 </CSSTransitionGroup>
@@ -145,7 +145,8 @@ const mapStateToProps = (state) => {
         darkMode: state.darkmode,
         show: state.show,
         modalText: state.modalText,
-        modalTitle: state.modalTitle
+        modalTitle: state.modalTitle,
+        darkModeText: state.darkModeText
     }
 }
 

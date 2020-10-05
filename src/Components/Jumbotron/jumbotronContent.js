@@ -4,16 +4,16 @@ import { BsHeartFill, BsHeart } from 'react-icons/bs';
 import { Button, Jumbotron, Row, Col } from 'react-bootstrap';
 import CardsList from '../CardsList/cardsList';
 import {existsInFavorites} from '../../UtilityFunctions/functions'
-
+import './Jumbotron.scss'
 
 const jumbotronContent = (props) => {
     return(
-        <Jumbotron className={props.darkMode ? "jumbotron-dark container" : "jumbotron-light container"}>
+        <Jumbotron className={"jumbotron-" + props.darkModeText + " container"}>
         <Row className="show-grid">
             <Col xs={6} className="d-flex justify-content-start">
                 <section >
-                    <h3 className={'DarkText'}>{props.current.cityName}</h3>
-                    <h3 className={'DarkText'}>{props.current.currentTemp} °{props.unit}</h3>
+                    <h3 className="DarkText">{props.current.cityName}</h3>
+                    <h3 className="DarkText">{props.current.currentTemp} °{props.unit}</h3>
                     <img src={ICON_PATH_1 + props.current.icon + ICON_PATH_2} alt="weather icon"></img>
                 </section>                        </Col>
             <Col xs={6} className="d-flex justify-content-end">

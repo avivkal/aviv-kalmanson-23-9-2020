@@ -1,0 +1,23 @@
+@import '../../Constants/colors.scss';
+
+.state-of-weather{
+    font-size: 70px;
+    margin-top: 50px;
+}
+  
+.add-to-favorites{
+    width: 180px;
+}
+  
+.jumbotron-light{
+    background-color : $jumbotron-light !important ;
+}
+  
+  
+.jumbotron-dark{
+    background-color : $jumbotron-dark !important ;
+}
+  
+.cards-list-home{
+    margin-top: 130px;
+}
