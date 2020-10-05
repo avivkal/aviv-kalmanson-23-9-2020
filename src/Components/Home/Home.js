@@ -18,65 +18,8 @@ class Home extends Component {
         const oldFavorites = getFavorites();
         this.props.updateFavorites(oldFavorites);
         if (this.props.first) {  //actions async
-            axios.all([axios.get('forecasts/v1/daily/5day/' + DEFAULT_CITY_KEY + API_PATH),
-            axios.get('currentconditions/v1/' + DEFAULT_CITY_KEY + API_PATH)])
-                .then(data => {
-                    this.props.setCurrentCityDetails(data, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME);
-                    this.props.firstTimeFinished();
-                }).then(() => {
-                    navigator.geolocation.getCurrentPosition(this.success, this.errorLog, {
-                        enableHighAccuracy: true,
-                        timeout: 5000,
-                        maximumAge: 0
-                    });
-                }).catch(error => this.props.openModal('Error', error.toString()));
+            this.props.firstLoad();
         }
-
-    }
-
-    //actions async
-    errorLog = () => {
-        this.props.openModal('Note', 'Access denied to your location! No worries, we will use Tel Aviv as default.');
-    }
-
-
-    //actions async
-    success = (pos) => {
-        let crd = pos.coords;
-        axios.get('locations/v1/cities/geoposition/search' + API_PATH + '&q='
-            + crd.latitude + '%2C' + crd.longitude).then(data => {
-                this.submit(data.data.Key, data.data.EnglishName);
-                this.props.firstTimeFinished();
-            }).catch(error => this.props.openModal('Error', error.toString()))
-    }
-
-    //actions async
-    changeHandler = (event) => {
-        this.props.updateText(event.target.value);
-        axios.get('locations/v1/cities/autocomplete' + API_PATH + '&q=' + event.target.value)
-            .then(response => {
-                let arr = [];
-                for (let i = 0; i < response.data.length; i++) {
-                    arr[i] = {
-                        key: response.data[i].Key,
-                        text: response.data[i].LocalizedName + ',' + response.data[i].AdministrativeArea.LocalizedName + ',' + response.data[i].Country.ID,
-                        value: response.data[i].LocalizedName + ',' + response.data[i].AdministrativeArea.LocalizedName + ',' + response.data[i].Country.ID,
-
-                    }
-                }
-                this.props.updateSearch(arr);
-            }
-            ).catch(error => this.props.openModal('Error', error.toString()));
-    }
-
-    //actions async
-    submit = (cityKey = this.props.searchText[0].key, cityName = this.props.searchText[0].text.split(',')[0]) => {
-        axios.all([axios.get('forecasts/v1/daily/5day/' + cityKey + API_PATH),
-        axios.get('currentconditions/v1/' + cityKey + API_PATH)])
-            .then(data => {
-                this.props.setCurrentCityDetails(data, cityKey, cityName);
-                this.props.clearText();
-            }).catch(errors => this.props.openModal('Error', errors.toString()))
     }
 
     addToFavoritesHandler = () => {
@@ -102,8 +45,8 @@ class Home extends Component {
                         options={this.props.searchText}
                         search
                         placeholder="Enter City"
-                        onSearchChange={(event) => this.changeHandler(event)}
-                        onChange={(event) => { this.submit(findKeyByName(event.currentTarget.textContent, this.props.searchText), event.currentTarget.textContent.split(',')[0]) }}
+                        onSearchChange={(event) => this.props.changeHandler(event)}
+                        onChange={(event) => { this.props.submit(findKeyByName(event.currentTarget.textContent, this.props.searchText), event.currentTarget.textContent.split(',')[0]) }}
                     />
                 </section>
                 <CSSTransitionGroup transitionName="cards"
@@ -163,6 +106,10 @@ const mapDispatchToProps = (dispatch) => {
         closeModal: () => dispatch(homeActions.closeModal()),
         openModal: (title, text) => dispatch(homeActions.openModal(title, text)),
         updateFavorites: (favorites) => dispatch(generalActions.updateFavorites(favorites)),
+        submit: (cityKey, cityName) => dispatch(homeActions.submit(cityKey, cityName)),
+        changeHandler : (event) => dispatch(homeActions.changeHandler(event)),
+        firstLoad : () => dispatch(homeActions.firstLoad()),
+
     }
 }
 

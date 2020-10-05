@@ -51,13 +51,16 @@ const forLoopconvertCelsiusToFahrenheit = (arr) => {
 
 
 const convertTemp = (arr, currentUnit) => {
-    let newArr = [...arr];
-    if (currentUnit === 'F') {
-        return forLoopconvertFahrenheitToCelsius(newArr);
+    if(arrayExists(arr)){
+        let newArr = [...arr];
+        if (currentUnit === 'F') {
+            return forLoopconvertFahrenheitToCelsius(newArr);
+        }
+        else {
+            return forLoopconvertCelsiusToFahrenheit(newArr);
+        }
     }
-    else {
-        return forLoopconvertCelsiusToFahrenheit(newArr);
-    }
+   return arr;
 }
 
 const convertFavoritesToCelsius = () => {
