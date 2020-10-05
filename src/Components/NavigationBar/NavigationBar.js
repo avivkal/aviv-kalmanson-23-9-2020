@@ -5,7 +5,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import * as generalActions from '../../Store/Actions/actions'
 import * as navigationBarActions from '../../Store/Actions/navigationBarActions'
-import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, forLoopconvertCelsiusToFahrenheit, forLoopconvertFahrenheitToCelsius, convertTemp } from '../../UtilityFunctions/functions';
+import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, convertTemp } from '../../UtilityFunctions/functions';
 import { HOME_PATH,FAVORITES_PATH } from '../../Constants/const'
 
 
