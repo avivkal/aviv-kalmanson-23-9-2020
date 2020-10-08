@@ -8,7 +8,7 @@ import { convertIconPath } from '../../UtilityFunctions/functions'
 const card = (props) => {
     if (props.isFav) {
         return (
-            <Card className="col-xl-2 favorites-cards" onClick={props.click} as={NavLink}>
+            <Card className="col-lg-2 favorites-cards" onClick={props.click} as={NavLink}>
                 <Card.Body>
                     <Card.Title className="cards-text">{props.currentFavorite.cityName}</Card.Title>
                     <div className="cards-text">
@@ -17,7 +17,7 @@ const card = (props) => {
                             {props.currentFavorite.currentStateOfWeather}
                         </div>
                         <div className="image">
-                            <img src={ICON_PATH_1 + props.currentFavorite.icon + ICON_PATH_2} alt="weather icon day"></img>
+                            <img className="icons-images" src={ICON_PATH_1 + props.currentFavorite.icon + ICON_PATH_2} alt="weather icon day"></img>
                         </div>
                     </div>
                 </Card.Body>
@@ -31,10 +31,12 @@ const card = (props) => {
                 <div className="cards-text card-margin">
                     {props.currentDay.Temperature.Minimum.Value}  - {props.currentDay.Temperature.Maximum.Value} °{props.unit}
                     <div className="row icons-day-night justify-content-center">
-                        <span>Day:</span>
-                        <img src={ICON_PATH_1 + convertIconPath(props.currentDay.Day.Icon) + ICON_PATH_2} alt="weather icon day"></img>
-                        <span>Night:</span>
-                        <img src={ICON_PATH_1 + convertIconPath(props.currentDay.Night.Icon) + ICON_PATH_2} alt="weather icon night"></img>
+                        <span className="d-flex justify-content-start span-width">Day:</span>
+                        <img className="icons-images" src={ICON_PATH_1 + convertIconPath(props.currentDay.Day.Icon) + ICON_PATH_2} alt="weather icon day"></img>
+                    </div>
+                    <div className="row icons-day-night justify-content-center">
+                    <span className="d-flex justify-content-start span-width">Night:</span>
+                        <img className="icons-images" src={ICON_PATH_1 + convertIconPath(props.currentDay.Night.Icon) + ICON_PATH_2} alt="weather icon night"></img>
                     </div>
                 </div>
             </Card.Body>
