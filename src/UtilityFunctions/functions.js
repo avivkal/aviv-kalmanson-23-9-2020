@@ -1,3 +1,5 @@
+import Favorites from "../Components/Favorites/Favorites";
+
 const convertCelsiusToFahrenheit = (celsius) => {
     let fahrenheit = (celsius * 1.8) + 32;
     return fahrenheit.toFixed(1);
@@ -65,11 +67,13 @@ const convertTemp = (arr, currentUnit) => {
 
 const convertFavoritesToCelsius = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
-    favorites.map(currentFavorite => {
-        currentFavorite.currentTemp = convertFahrenheitToCelsius(currentFavorite.currentTemp);
-        currentFavorite.fiveDaysForecast = forLoopconvertFahrenheitToCelsius(currentFavorite.fiveDaysForecast);
-        return currentFavorite;
-    });
+    if(arrayExists(favorites)){
+        favorites.map(currentFavorite => {
+            currentFavorite.currentTemp = convertFahrenheitToCelsius(currentFavorite.currentTemp);
+            currentFavorite.fiveDaysForecast = forLoopconvertFahrenheitToCelsius(currentFavorite.fiveDaysForecast);
+            return currentFavorite;
+        });
+    }
 
     return favorites;
 
@@ -77,11 +81,13 @@ const convertFavoritesToCelsius = () => {
 
 const convertFavoritesToFahrenheit = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
-    favorites.map(currentFavorite => {
-        currentFavorite.currentTemp = convertCelsiusToFahrenheit(currentFavorite.currentTemp);
-        currentFavorite.fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(currentFavorite.fiveDaysForecast);
-        return currentFavorite;
-    });
+    if(arrayExists(favorites)){
+        favorites.map(currentFavorite => {
+            currentFavorite.currentTemp = convertCelsiusToFahrenheit(currentFavorite.currentTemp);
+            currentFavorite.fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(currentFavorite.fiveDaysForecast);
+            return currentFavorite;
+        });
+    }
     return favorites;
 }
 

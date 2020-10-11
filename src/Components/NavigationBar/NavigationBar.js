@@ -84,10 +84,10 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        darkMode: state.darkmode,
-        unit: state.unit,
-        current: state.current,
-        favorites: state.favorites
+        darkMode: state.navigation.darkmode,
+        unit: state.navigation.unit,
+        current: state.home.current,
+        favorites: state.home.favorites
     }
 }
 

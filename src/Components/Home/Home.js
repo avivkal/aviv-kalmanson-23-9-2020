@@ -21,7 +21,7 @@ class Home extends Component {
     }
 
     addToFavoritesHandler = () => {
-        if (!existsInFavorites(this.props.current, this.props.favorites)) {
+        if (!existsInFavorites(this.props.current, this.props.favorites)) {  
             this.props.addToFavorites();
         }
         else {
@@ -77,17 +77,16 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        favorites: state.favorites,
-        current: state.current,
-        text: state.searchText,
-        searchText: state.searchArr,
-        unit: state.unit,
-        first: state.firstTime,
-        darkMode: state.darkmode,
-        show: state.show,
-        modalText: state.modalText,
-        modalTitle: state.modalTitle,
-        darkModeText: state.darkModeText
+        favorites: state.home.favorites,
+        current: state.home.current,
+        text: state.home.searchText,
+        searchText: state.home.searchArr,
+        unit: state.navigation.unit,
+        first: state.home.firstTime,
+        show: state.home.show,
+        modalText: state.home.modalText,
+        modalTitle: state.home.modalTitle,
+        darkModeText: state.navigation.darkModeText
     }
 }
 
@@ -96,7 +95,6 @@ const mapDispatchToProps = (dispatch) => {
         updateText: (val) => dispatch(homeActions.updateText(val)),
         updateSearch: (arr) => dispatch(homeActions.updateSearch(arr)),
         setCurrentCityDetails: (data, cityKey, cityName) => dispatch(homeActions.setCurrentCityDetails(data, cityKey, cityName)),
-        updateForecast: (arr) => dispatch(homeActions.updateForecast(arr)),
         addToFavorites: () => dispatch(homeActions.addToFavorites()),
         firstTimeFinished: () => dispatch(homeActions.firstTimeFinished()),
         clearText: () => dispatch(generalActions.clear()),

@@ -47,12 +47,11 @@ class Favorites extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        favorites: state.favorites,
-        current: state.current,
-        darkMode: state.darkmode,
-        unit: state.unit,
-        firstTimeFavorites: state.firstTimeFavorites,
-        darkModeText: state.darkModeText
+        favorites: state.home.favorites,
+        current: state.home.current,
+        unit: state.navigation.unit,
+        firstTimeFavorites: state.favorites.firstTimeFavorites,
+        darkModeText: state.navigation.darkModeText
     }
 }
 

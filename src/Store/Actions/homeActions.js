@@ -21,7 +21,7 @@ const updateSearch = (arr) => {
 }
 
 const setCurrentCityDetails = (data, cityKey, cityName) => {
-    const unit = store.getState().unit;
+    const unit = store.getState().navigation.unit;
     const icon = data[1].data[0].WeatherIcon < 10 ? '0' + data[1].data[0].WeatherIcon : data[1].data[0].WeatherIcon;
     const currentTemp = unit === 'C' ? Math.floor(data[1].data[0].Temperature.Metric.Value) : Math.floor(data[1].data[0].Temperature.Imperial.Value);
     const currentStateOfWeather = data[1].data[0].WeatherText;
@@ -39,16 +39,9 @@ const setCurrentCityDetails = (data, cityKey, cityName) => {
     }
 }
 
-const updateForecast = (arr) => {
-    return {
-        type: actionTypes.UPDATE_FORECAST,
-        arr
-    }
-}
-
 const addToFavorites = () => {
     const favorites = getFavorites();
-    const current = store.getState().current;
+    const current = store.getState().home.current;
     let newFav = [];
     if (!arrayExists(favorites)) {
         newFav.push(current);
@@ -70,7 +63,7 @@ const firstTimeFinished = () => {
 }
 
 const removeFromFavorites = (key) => {
-    const favoriteCities = store.getState().favorites;
+    const favoriteCities = store.getState().home.favorites;
     const newFavList = favoriteCities.filter(city => city.key !== key);
     setFavorites(newFavList);
     return {
@@ -151,7 +144,6 @@ export {
     updateText,
     updateSearch,
     setCurrentCityDetails,
-    updateForecast,
     addToFavorites,
     firstTimeFinished,
     removeFromFavorites,
