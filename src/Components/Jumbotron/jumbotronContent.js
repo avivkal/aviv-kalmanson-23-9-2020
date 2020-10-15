@@ -5,10 +5,13 @@ import { Button, Jumbotron, Row, Col, NavLink } from 'react-bootstrap';
 import CardsList from '../CardsList/cardsList';
 import { existsInFavorites } from '../../UtilityFunctions/functions'
 import './Jumbotron.scss'
+import propTypes from 'prop-types';
+
+
 
 const jumbotronContent = (props) => {
     return (
-        <Jumbotron className={"jumbotron-" + props.darkModeText + " container fluid"}>
+        <Jumbotron className={`jumbotron-${props.darkModeText} container fluid`}>
             <Row className="show-grid">
                 <Col md={{ span: 6, offset: 3 }} className="justify-content-center">
                     <section >
@@ -37,4 +40,13 @@ const jumbotronContent = (props) => {
         </Jumbotron>
     );
 }
+
+jumbotronContent.propTypes = {
+    unit: propTypes.string,
+    current: propTypes.object,
+    favorites: propTypes.array,
+    click: propTypes.func,
+    darkModeText: propTypes.string
+}
+
 export default jumbotronContent;

@@ -20,7 +20,7 @@ const firstTimeFinishedFavorites = () => {
     }
 }
 
-const firstLoadFavorites = () => dispatch => {
+const firstLoadFavorites = () => async dispatch => {
     const oldFavorites = getFavorites();
     let requests = [];
     if(arrayExists(oldFavorites)){
@@ -30,10 +30,9 @@ const firstLoadFavorites = () => dispatch => {
                 axios.get('currentconditions/v1/' + favorite.key + API_PATH)])
             )
         }
-    
         const unit = store.getState().navigation.unit;
-    
-        axios.all(requests).then((response) => {
+        const response = await axios.all(requests);
+
             for (let i = 0; i < response.length; i++) {
                 oldFavorites[i].fiveDaysForecast = unit === 'C' ? forLoopconvertFahrenheitToCelsius(response[i][0].data.DailyForecasts) : response[i][0].data.DailyForecasts;
                 oldFavorites[i].currentStateOfWeather = response[i][1].data[0].WeatherText;
@@ -42,7 +41,6 @@ const firstLoadFavorites = () => dispatch => {
             }
             dispatch(updateFavorites(oldFavorites));
             dispatch(firstTimeFinishedFavorites());
-        })
     }
     
 }

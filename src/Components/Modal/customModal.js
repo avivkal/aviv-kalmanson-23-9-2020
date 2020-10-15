@@ -1,5 +1,5 @@
 import React from 'react'
-
+import propTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 
 const customModal = (props) => {
@@ -17,6 +17,13 @@ const customModal = (props) => {
         </Modal>
     );
 
+}
+
+customModal.propTypes = {
+    modalTitle: propTypes.string,
+    modalText: propTypes.string,
+    closeModal: propTypes.func,
+    show: propTypes.bool,
 }
 
 export default customModal;

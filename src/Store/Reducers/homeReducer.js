@@ -3,14 +3,10 @@ const initialState = {
     current: {}, 
     searchText: '', 
     searchArr: [], 
-    // unit: 'C',
     firstTime: true, 
-    // firstTimeFavorites: true,
-    // darkmode: false,
     show: false,
     modalTitle: '', 
     modalText: '', 
-    // darkModeText: 'light'
 }
 
 

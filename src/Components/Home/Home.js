@@ -10,12 +10,14 @@ import { existsInFavorites, findKeyByName } from '../../UtilityFunctions/functio
 import { getFavorites } from '../../UtilityFunctions/localStorageFunctions'
 import CustomModal from '../Modal/customModal'
 import JumbotronContent from '../Jumbotron/jumbotronContent'
+import _, {debounce} from 'lodash';
+
 
 class Home extends Component {
     componentDidMount() {
         const oldFavorites = getFavorites();
         this.props.updateFavorites(oldFavorites);
-        if (this.props.first) {  //actions async
+        if (this.props.firstTime) {  //actions async
             this.props.firstLoad();
         }
     }
@@ -29,6 +31,10 @@ class Home extends Component {
         }
     }
 
+    changeHandlerDelay = debounce(event => {
+        this.props.changeHandler(event);
+    },500);
+    
     render() {
         return (
             <div className={this.props.darkModeText}>
@@ -40,11 +46,13 @@ class Home extends Component {
                         button
                         floating
                         labeled
-                        options={this.props.searchText}
+                        options={this.props.searchArr}
                         search
                         placeholder="Enter City"
-                        onSearchChange={(event) => this.props.changeHandler(event)}
-                        onChange={(event) => { this.props.submit(findKeyByName(event.currentTarget.textContent, this.props.searchText), event.currentTarget.textContent.split(',')[0]) }}
+                        onSearchChange={(event)=> {
+                            event.persist();
+                            this.changeHandlerDelay(event)}}
+                        onChange={(event) => { this.props.submit(findKeyByName(event.currentTarget.textContent, this.props.searchArr), event.currentTarget.textContent.split(',')[0]) }}
                     />
                 </section>
                 <CSSTransitionGroup transitionName="cards"
@@ -76,17 +84,18 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
+    const {favorites,current,searchArr,firstTime,show,modalText,modalTitle} = state.home; 
+    const {unit,darkModeText} = state.navigation;
     return {
-        favorites: state.home.favorites,
-        current: state.home.current,
-        text: state.home.searchText,
-        searchText: state.home.searchArr,
-        unit: state.navigation.unit,
-        first: state.home.firstTime,
-        show: state.home.show,
-        modalText: state.home.modalText,
-        modalTitle: state.home.modalTitle,
-        darkModeText: state.navigation.darkModeText
+        favorites,
+        current,
+        firstTime,
+        show,
+        modalText,
+        modalTitle,
+        searchArr,
+        unit,
+        darkModeText
     }
 }
 

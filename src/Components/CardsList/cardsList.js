@@ -2,6 +2,7 @@ import React from 'react'
 import Card from '../Card/card'
 import './cardsList.scss'
 import { arrayExists } from '../../UtilityFunctions/functions'
+import propTypes from 'prop-types';
 
 const cardsList = (props) => {
     if (props.isFav) {
@@ -16,7 +17,7 @@ const cardsList = (props) => {
                             currentTemp={currentFavorite.currentTemp}
                             unit={props.unit}
                             isFav={props.isFav} />
-                    }) : <h1 className={'text-' + props.darkModeText + '-mode-active no-favorites-h1'}>You don't have any favorites currently</h1>}
+                    }) : <h1 className={`text-${props.darkModeText}-mode-active no-favorites-h1`}>You don't have any favorites currently</h1>}
                 </div>
             </div>
 
@@ -25,7 +26,7 @@ const cardsList = (props) => {
     }
     return (
         <div className="row justify-content-center">
-            {arrayExists(props.current.fiveDaysForecast) ? props.current.fiveDaysForecast.map((currentDay, index) => {
+            {arrayExists(props.current.fiveDaysForecast) && props.current.fiveDaysForecast.map((currentDay, index) => {
                 return <Card currentDay={currentDay}
                     today={props.today}
                     index={index}
@@ -33,9 +34,19 @@ const cardsList = (props) => {
                     key={currentDay.Date}
                     isFav={props.isFav} />
             }
-            ) : null}
+            )}
         </div>
     );
+}
+
+cardsList.propTypes = {
+    unit: propTypes.string,
+    current: propTypes.object,
+    favorites: propTypes.array,
+    click: propTypes.func,
+    darkModeText: propTypes.string,
+    isFav: propTypes.bool,
+    today: propTypes.number
 }
 
 export default cardsList;

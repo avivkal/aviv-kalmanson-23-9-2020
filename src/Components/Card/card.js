@@ -4,6 +4,7 @@ import { Card, NavLink } from 'react-bootstrap';
 import './card.scss';
 import { ICON_PATH_1, ICON_PATH_2 } from '../../Constants/const'
 import { convertIconPath } from '../../UtilityFunctions/functions'
+import propTypes from 'prop-types';
 
 const card = (props) => {
     if (props.isFav) {
@@ -12,7 +13,7 @@ const card = (props) => {
                 <Card.Body>
                     <Card.Title className="cards-text">{props.currentFavorite.cityName}</Card.Title>
                     <div className="cards-text">
-                        {props.currentTemp} °{props.unit}
+                        {props.currentFavorite.currentTemp} °{props.unit}
                         <div className="current-state" >
                             {props.currentFavorite.currentStateOfWeather}
                         </div>
@@ -42,6 +43,17 @@ const card = (props) => {
             </Card.Body>
         </Card>
     );
+}
+
+card.propTypes = {
+    currentDay: propTypes.object,
+    currentFavorite: propTypes.object,
+    unit: propTypes.string,
+    index: propTypes.number,
+    click: propTypes.func,
+    darkModeText: propTypes.string,
+    isFav: propTypes.bool,
+    today: propTypes.number 
 }
 
 export default card;
