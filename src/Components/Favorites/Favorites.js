@@ -6,6 +6,7 @@ import * as generalActions from '../../Store/Actions/actions'
 import * as favoritesActions from '../../Store/Actions/favoritesActions'
 import CardsList from '../CardsList/cardsList'
 import { HOME_PATH } from '../../Constants/const'
+import { Spinner } from 'react-bootstrap';
 
 
 class Favorites extends Component {
@@ -24,6 +25,11 @@ class Favorites extends Component {
     }
 
     render() {
+        if(this.props.loading){
+            return(
+                <Spinner animation="border" className="spinner" />
+            );
+        }
         return (
             <div className={this.props.darkModeText}>
                 <CSSTransitionGroup transitionName="cards"
@@ -51,7 +57,8 @@ const mapStateToProps = (state) => {
         current: state.home.current,
         unit: state.navigation.unit,
         firstTimeFavorites: state.favorites.firstTimeFavorites,
-        darkModeText: state.navigation.darkModeText
+        darkModeText: state.navigation.darkModeText,
+        loading: state.home.loading
     }
 }
 

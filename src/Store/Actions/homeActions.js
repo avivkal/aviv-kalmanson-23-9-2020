@@ -4,7 +4,7 @@ import { arrayExists, convertTemp, forLoopconvertFahrenheitToCelsius } from '../
 import { getFavorites, setFavorites } from '../../UtilityFunctions/localStorageFunctions'
 import axios from 'axios'
 import { API_PATH, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME } from '../../Constants/const'
-import { clear } from './actions'
+import { clear, loading } from './actions'
 
 const updateText = (val) => {
     return {
@@ -87,7 +87,9 @@ const openModal = (title, text) => {
 }
 
 
+
 const firstLoad = () => async dispatch => { //get first data = Tel Aviv/Current location
+    dispatch(loading());
     const data = await axios.all([axios.get('forecasts/v1/daily/5day/' + DEFAULT_CITY_KEY + API_PATH),
     axios.get('currentconditions/v1/' + DEFAULT_CITY_KEY + API_PATH)]);
     dispatch(setCurrentCityDetails(data, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME));
@@ -138,6 +140,7 @@ const changeHandler = (event) => async dispatch => {
 }
 
 const submit = (cityKey, cityName) => async dispatch => {
+    dispatch(loading());
     const data = await axios.all([axios.get('forecasts/v1/daily/5day/' + cityKey + API_PATH),
     axios.get('currentconditions/v1/' + cityKey + API_PATH)]);
 

@@ -6,7 +6,8 @@ const initialState = {
     firstTime: true, 
     show: false,
     modalTitle: '', 
-    modalText: '', 
+    modalText: '',
+    loading: false 
 }
 
 
@@ -25,6 +26,7 @@ const homeReducer = (state = initialState, action) => {
         case 'SET_CURRENT_CITY_DETAILS': //home
             return {
                 ...state,
+                loading: false,
                 current: {
                     key: action.cityKey,
                     cityName: action.cityName,
@@ -64,13 +66,12 @@ const homeReducer = (state = initialState, action) => {
                 modalTitle: action.title,
                 modalText: action.text
             }
-
-            //should not be here!! :
             
         case 'UPDATE_FAVORITES'://all
             return {
                 ...state,
-                favorites: action.favorites
+                favorites: action.favorites,
+                loading: false
             }
 
         case 'CLEAR': //all
@@ -83,7 +84,7 @@ const homeReducer = (state = initialState, action) => {
         case 'SET_FAVORITE_CITY_DETAILS': //favorites
             return {
                 ...state,
-                current: { ...action.payload }
+                current: { ...action.payload },
             }
 
         case 'TOGGLE': //navigation
@@ -97,7 +98,11 @@ const homeReducer = (state = initialState, action) => {
                 }
             }
 
-
+        case 'LOADING': //home
+            return {
+                ...state,
+                loading: true
+            }
         default:
             return state
     }

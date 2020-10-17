@@ -15,7 +15,14 @@ const updateFavorites = (favorites) => {
     }
 }
 
+const loading = () => {
+    return{
+        type: actionTypes.LOADING
+    }
+}
+
 export {
     clear,
     updateFavorites,
+    loading
 }

@@ -8,7 +8,7 @@ const favoritesReducer = (state = initialState, action) => {
         case 'FIRST_TIME_FINISHED_FAVORITES': //favorites
             return {
                 ...state,
-                firstTimeFavorites: false
+                firstTimeFavorites: false,
             }
 
         default:

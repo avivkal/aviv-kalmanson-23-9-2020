@@ -3,7 +3,7 @@ import axios from 'axios'
 import { getFavorites } from '../../UtilityFunctions/localStorageFunctions'
 import { arrayExists, convertTemp } from '../../UtilityFunctions/functions'
 import { API_PATH } from '../../Constants/const'
-import { updateFavorites } from './actions'
+import { updateFavorites,loading } from './actions'
 import { store } from '../store'
 
 
@@ -21,6 +21,7 @@ const firstTimeFinishedFavorites = () => {
 }
 
 const firstLoadFavorites = () => async dispatch => {
+    dispatch(loading());
     const oldFavorites = getFavorites();
     let requests = [];
     if(arrayExists(oldFavorites)){
