@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '../Card/card'
+import FavoriteCard from '../FavoriteCard/favoriteCard'
 import './cardsList.scss'
 import { arrayExists } from '../../UtilityFunctions/functions'
 import propTypes from 'prop-types';
@@ -10,13 +11,12 @@ const cardsList = (props) => {
             <div className="container">
                 <div className="row justify-content-center">
                     {arrayExists(props.favorites) ? props.favorites.map(currentFavorite => {
-                        return <Card
+                        return <FavoriteCard
                             key={currentFavorite.key}
                             currentFavorite={currentFavorite}
                             click={() => props.click(currentFavorite)}
                             currentTemp={currentFavorite.currentTemp}
-                            unit={props.unit}
-                            isFav={props.isFav} />
+                            unit={props.unit}/>
                     }) : <h1 className={`text-${props.darkModeText}-mode-active no-favorites-h1`}>You don't have any favorites currently</h1>}
                 </div>
             </div>
@@ -32,7 +32,7 @@ const cardsList = (props) => {
                     index={index}
                     unit={props.unit}
                     key={currentDay.Date}
-                    isFav={props.isFav} />
+                    />
             }
             )}
         </div>

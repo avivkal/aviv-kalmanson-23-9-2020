@@ -1,7 +1,7 @@
 import { actionTypes } from '../actionTypes'
 import axios from 'axios'
 import { getFavorites } from '../../UtilityFunctions/localStorageFunctions'
-import { arrayExists, forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
+import { arrayExists, convertTemp } from '../../UtilityFunctions/functions'
 import { API_PATH } from '../../Constants/const'
 import { updateFavorites } from './actions'
 import { store } from '../store'
@@ -34,7 +34,7 @@ const firstLoadFavorites = () => async dispatch => {
         const response = await axios.all(requests);
 
             for (let i = 0; i < response.length; i++) {
-                oldFavorites[i].fiveDaysForecast = unit === 'C' ? forLoopconvertFahrenheitToCelsius(response[i][0].data.DailyForecasts) : response[i][0].data.DailyForecasts;
+                oldFavorites[i].fiveDaysForecast = unit === 'C' ? convertTemp(response[i][0].data.DailyForecasts) : response[i][0].data.DailyForecasts;
                 oldFavorites[i].currentStateOfWeather = response[i][1].data[0].WeatherText;
                 oldFavorites[i].currentTemp = unit === 'C' ? Math.floor(response[i][1].data[0].Temperature.Metric.Value) : Math.floor(response[i][1].data[0].Temperature.Imperial.Value);
                 oldFavorites[i].icon = response[i][1].data[0].WeatherIcon < 10 ? '0' + response[i][1].data[0].WeatherIcon : response[i][1].data[0].WeatherIcon;

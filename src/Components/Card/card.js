@@ -7,24 +7,6 @@ import { convertIconPath } from '../../UtilityFunctions/functions'
 import propTypes from 'prop-types';
 
 const card = (props) => {
-    if (props.isFav) {
-        return (
-            <Card className="col-lg-2 favorites-cards" onClick={props.click} as={NavLink}>
-                <Card.Body>
-                    <Card.Title className="cards-text">{props.currentFavorite.cityName}</Card.Title>
-                    <div className="cards-text">
-                        {props.currentFavorite.currentTemp} °{props.unit}
-                        <div className="current-state" >
-                            {props.currentFavorite.currentStateOfWeather}
-                        </div>
-                        <div className="image">
-                            <img className="icons-images" src={ICON_PATH_1 + props.currentFavorite.icon + ICON_PATH_2} alt="weather icon day"></img>
-                        </div>
-                    </div>
-                </Card.Body>
-            </Card>
-        );
-    }
     return (
         <Card className="col-xl-2 cards-style">
             <Card.Body >
@@ -47,12 +29,8 @@ const card = (props) => {
 
 card.propTypes = {
     currentDay: propTypes.object,
-    currentFavorite: propTypes.object,
     unit: propTypes.string,
     index: propTypes.number,
-    click: propTypes.func,
-    darkModeText: propTypes.string,
-    isFav: propTypes.bool,
     today: propTypes.number 
 }
 

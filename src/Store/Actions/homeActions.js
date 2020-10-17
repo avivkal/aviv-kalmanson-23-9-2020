@@ -1,6 +1,6 @@
 import { actionTypes } from '../actionTypes'
 import { store } from '../store'
-import { arrayExists, forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
+import { arrayExists, convertTemp, forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
 import { getFavorites, setFavorites } from '../../UtilityFunctions/localStorageFunctions'
 import axios from 'axios'
 import { API_PATH, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME } from '../../Constants/const'
@@ -25,7 +25,7 @@ const setCurrentCityDetails = (data, cityKey, cityName) => {
     const icon = data[1].data[0].WeatherIcon < 10 ? '0' + data[1].data[0].WeatherIcon : data[1].data[0].WeatherIcon;
     const currentTemp = unit === 'C' ? Math.floor(data[1].data[0].Temperature.Metric.Value) : Math.floor(data[1].data[0].Temperature.Imperial.Value);
     const currentStateOfWeather = data[1].data[0].WeatherText;
-    const fiveDaysForecast = unit === 'C' ? forLoopconvertFahrenheitToCelsius(data[0].data.DailyForecasts) : data[0].data.DailyForecasts;
+    const fiveDaysForecast = unit === 'C' ? convertTemp(data[0].data.DailyForecasts) : data[0].data.DailyForecasts;
 
     return {
         type: actionTypes.SET_CURRENT_CITY_DETAILS,
@@ -86,9 +86,6 @@ const openModal = (title, text) => {
     }
 }
 
-const firstLoadPromise = () => {
-
-}
 
 const firstLoad = () => async dispatch => { //get first data = Tel Aviv/Current location
     const data = await axios.all([axios.get('forecasts/v1/daily/5day/' + DEFAULT_CITY_KEY + API_PATH),
@@ -99,8 +96,7 @@ const firstLoad = () => async dispatch => { //get first data = Tel Aviv/Current 
     try{
         navigator.geolocation.getCurrentPosition(async (pos) => { //if success
             let crd = pos.coords;
-            const response = await axios.get('locations/v1/cities/geoposition/search' + API_PATH + '&q='
-                + crd.latitude + '%2C' + crd.longitude);
+            const response = await axios.get(`locations/v1/cities/geoposition/search${API_PATH}&q=${crd.latitude}%2C${crd.longitude}`);
             dispatch(submit(response.data.Key, response.data.EnglishName));
             dispatch(firstTimeFinished());
         },

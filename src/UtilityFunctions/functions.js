@@ -1,5 +1,3 @@
-import Favorites from "../Components/Favorites/Favorites";
-
 const convertCelsiusToFahrenheit = (celsius) => {
     let fahrenheit = (celsius * 1.8) + 32;
     return fahrenheit.toFixed(1);
@@ -24,43 +22,24 @@ const existsInFavorites = (x, favorites) => {
     return found !== undefined;
 }
 
-const forLoopconvertFahrenheitToCelsius = (arr) => {
-    if (arrayExists(arr)) {
-
-        arr.map((current) => {
-            current.Temperature.Minimum.Value = convertFahrenheitToCelsius(current.Temperature.Minimum.Value);
-            current.Temperature.Maximum.Value = convertFahrenheitToCelsius(current.Temperature.Maximum.Value);
-            current.Temperature.Minimum.Unit = 'C';
-            current.Temperature.Maximum.Unit = 'C';
-            return current;
-        });
-    }
-    return arr;
-}
-
-const forLoopconvertCelsiusToFahrenheit = (arr) => {
+const convertTemp = (arr) => {
     if (arrayExists(arr)) {
         arr.map((current) => {
-            current.Temperature.Minimum.Value = convertCelsiusToFahrenheit(current.Temperature.Minimum.Value);
-            current.Temperature.Maximum.Value = convertCelsiusToFahrenheit(current.Temperature.Maximum.Value);
-            current.Temperature.Minimum.Unit = 'F';
-            current.Temperature.Maximum.Unit = 'F';
+            if(current.Temperature.Minimum.Unit === 'F'){
+                current.Temperature.Minimum.Value = convertFahrenheitToCelsius(current.Temperature.Minimum.Value);
+                current.Temperature.Maximum.Value = convertFahrenheitToCelsius(current.Temperature.Maximum.Value);
+                current.Temperature.Minimum.Unit = 'C';
+                current.Temperature.Maximum.Unit = 'C';
+            }
+            else{
+                current.Temperature.Minimum.Value = convertCelsiusToFahrenheit(current.Temperature.Minimum.Value);
+                current.Temperature.Maximum.Value = convertCelsiusToFahrenheit(current.Temperature.Maximum.Value);
+                current.Temperature.Minimum.Unit = 'F';
+                current.Temperature.Maximum.Unit = 'F';
+            }
+            
             return current;
         });
-    }
-    return arr;
-}
-
-
-const convertTemp = (arr, currentUnit) => {
-    if (arrayExists(arr)) {
-        let newArr = [...arr];
-        if (currentUnit === 'F') {
-            return forLoopconvertFahrenheitToCelsius(newArr);
-        }
-        else {
-            return forLoopconvertCelsiusToFahrenheit(newArr);
-        }
     }
     return arr;
 }
@@ -70,7 +49,7 @@ const convertFavoritesToCelsius = () => {
     if(arrayExists(favorites)){
         favorites.map(currentFavorite => {
             currentFavorite.currentTemp = convertFahrenheitToCelsius(currentFavorite.currentTemp);
-            currentFavorite.fiveDaysForecast = forLoopconvertFahrenheitToCelsius(currentFavorite.fiveDaysForecast);
+            currentFavorite.fiveDaysForecast = convertTemp(currentFavorite.fiveDaysForecast);
             return currentFavorite;
         });
     }
@@ -84,7 +63,7 @@ const convertFavoritesToFahrenheit = () => {
     if(arrayExists(favorites)){
         favorites.map(currentFavorite => {
             currentFavorite.currentTemp = convertCelsiusToFahrenheit(currentFavorite.currentTemp);
-            currentFavorite.fiveDaysForecast = forLoopconvertCelsiusToFahrenheit(currentFavorite.fiveDaysForecast);
+            currentFavorite.fiveDaysForecast = convertTemp(currentFavorite.fiveDaysForecast);
             return currentFavorite;
         });
     }
@@ -109,8 +88,6 @@ export {
     convertFahrenheitToCelsius,
     existsInFavorites,
     findKeyByName,
-    forLoopconvertCelsiusToFahrenheit,
-    forLoopconvertFahrenheitToCelsius,
     convertTemp,
     convertFavoritesToCelsius,
     convertFavoritesToFahrenheit,
