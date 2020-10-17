@@ -7,19 +7,20 @@ import { convertIconPath } from '../../UtilityFunctions/functions'
 import propTypes from 'prop-types';
 
 const card = (props) => {
+    const {today,index,currentDay,unit} = props;
     return (
         <Card className="col-xl-2 cards-style">
             <Card.Body >
-                <Card.Title className="cards-title">{DAYS[(props.today + props.index) % 7]}</Card.Title>
+                <Card.Title className="cards-title">{DAYS[(today + index) % 7]}</Card.Title>
                 <div className="cards-text card-margin">
-                    {props.currentDay.Temperature.Minimum.Value}  - {props.currentDay.Temperature.Maximum.Value} °{props.unit}
+                    {currentDay.Temperature.Minimum.Value}  - {currentDay.Temperature.Maximum.Value} °{unit}
                     <div className="row icons-day-night justify-content-center">
                         <span className="d-flex justify-content-start span-width">Day:</span>
-                        <img className="icons-images" src={ICON_PATH_1 + convertIconPath(props.currentDay.Day.Icon) + ICON_PATH_2} alt="weather icon day"></img>
+                        <img className="icons-images" src={ICON_PATH_1 + convertIconPath(currentDay.Day.Icon) + ICON_PATH_2} alt="weather icon day"></img>
                     </div>
                     <div className="row icons-day-night justify-content-center">
                     <span className="d-flex justify-content-start span-width">Night:</span>
-                        <img className="icons-images" src={ICON_PATH_1 + convertIconPath(props.currentDay.Night.Icon) + ICON_PATH_2} alt="weather icon night"></img>
+                        <img className="icons-images" src={ICON_PATH_1 + convertIconPath(currentDay.Night.Icon) + ICON_PATH_2} alt="weather icon night"></img>
                     </div>
                 </div>
             </Card.Body>

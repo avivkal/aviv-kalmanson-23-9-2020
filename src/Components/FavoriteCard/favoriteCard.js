@@ -7,17 +7,19 @@ import propTypes from 'prop-types';
 
 
 const favoriteCard = (props) => {
+    const {currentTemp,cityName,currentStateOfWeather, icon} = props.currentFavorite;
+    const {click,unit} = props;
     return(
-        <Card className="col-lg-2 favorites-cards" onClick={props.click} as={NavLink}>
+        <Card className="col-lg-2 favorites-cards" onClick={click} as={NavLink}>
                 <Card.Body>
-                    <Card.Title className="cards-text">{props.currentFavorite.cityName}</Card.Title>
+                    <Card.Title className="cards-text">{cityName}</Card.Title>
                     <div className="cards-text">
-                        {props.currentFavorite.currentTemp} °{props.unit}
+                        {currentTemp} °{unit}
                         <div className="current-state" >
-                            {props.currentFavorite.currentStateOfWeather}
+                            {currentStateOfWeather}
                         </div>
                         <div className="image">
-                            <img className="icons-images" src={ICON_PATH_1 + props.currentFavorite.icon + ICON_PATH_2} alt="weather icon day"></img>
+                            <img className="icons-images" src={ICON_PATH_1 + icon + ICON_PATH_2} alt="weather icon day"></img>
                         </div>
                     </div>
                 </Card.Body>

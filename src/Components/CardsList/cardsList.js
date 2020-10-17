@@ -6,17 +6,18 @@ import { arrayExists } from '../../UtilityFunctions/functions'
 import propTypes from 'prop-types';
 
 const cardsList = (props) => {
+    const {favorites, unit,click} = props;
     if (props.isFav) {
         return (
             <div className="container">
                 <div className="row justify-content-center">
-                    {arrayExists(props.favorites) ? props.favorites.map(currentFavorite => {
+                    {arrayExists(favorites) ? favorites.map(currentFavorite => {
                         return <FavoriteCard
                             key={currentFavorite.key}
                             currentFavorite={currentFavorite}
-                            click={() => props.click(currentFavorite)}
+                            click={() => click(currentFavorite)}
                             currentTemp={currentFavorite.currentTemp}
-                            unit={props.unit}/>
+                            unit={unit}/>
                     }) : <h1 className={`text-${props.darkModeText}-mode-active no-favorites-h1`}>You don't have any favorites currently</h1>}
                 </div>
             </div>
