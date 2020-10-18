@@ -10,7 +10,7 @@ const card = (props) => {
     const {today,index,currentDay,unit} = props;
     return (
         <Card className="col-xl-2 cards-style">
-            <Card.Body className="light">
+            <Card.Body>
                 <Card.Title className="cards-title">{DAYS[(today + index) % 7]}</Card.Title>
                 <div className="cards-text card-margin">
                     {currentDay.Temperature.Minimum.Value}  - {currentDay.Temperature.Maximum.Value} °{unit}
