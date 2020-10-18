@@ -1,7 +1,7 @@
 import React from 'react';
 import { ICON_PATH_1, ICON_PATH_2 } from '../../Constants/const';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
-import { Button, Jumbotron, Row, Col, NavLink } from 'react-bootstrap';
+import { Button, Jumbotron, Row, Col } from 'react-bootstrap';
 import CardsList from '../CardsList/cardsList';
 import { existsInFavorites } from '../../UtilityFunctions/functions'
 import './Jumbotron.scss'
@@ -11,6 +11,9 @@ import propTypes from 'prop-types';
 
 const jumbotronContent = (props) => {
     const {darkModeText,current,favorites,click,unit} = props;
+    if(current.icon === undefined){
+        return(<div></div>)
+    }
     return (
         <Jumbotron className={`jumbotron-${darkModeText} container fluid`}>
             <Row className="show-grid">

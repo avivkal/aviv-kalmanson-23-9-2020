@@ -1,6 +1,6 @@
 import React from 'react';
 import { DAYS } from '../../Constants/const';
-import { Card, NavLink } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import './card.scss';
 import { ICON_PATH_1, ICON_PATH_2 } from '../../Constants/const'
 import { convertIconPath } from '../../UtilityFunctions/functions'

@@ -1,6 +1,6 @@
 import { actionTypes } from '../actionTypes'
 import { store } from '../store'
-import { arrayExists, convertTemp, forLoopconvertFahrenheitToCelsius } from '../../UtilityFunctions/functions'
+import { arrayExists, convertTemp } from '../../UtilityFunctions/functions'
 import { getFavorites, setFavorites } from '../../UtilityFunctions/localStorageFunctions'
 import axios from 'axios'
 import { API_PATH, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME } from '../../Constants/const'

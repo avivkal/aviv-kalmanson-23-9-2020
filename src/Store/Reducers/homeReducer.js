@@ -13,17 +13,17 @@ const initialState = {
 
 const homeReducer = (state = initialState, action) => { 
     switch (action.type) {
-        case 'UPDATE_TEXT': //home
+        case 'UPDATE_TEXT': 
             return {
                 ...state,
                 searchText: action.val
             }
-        case 'UPDATE_SEARCH':  //home
+        case 'UPDATE_SEARCH':  
             return {
                 ...state,
                 searchArr: action.arr
             }
-        case 'SET_CURRENT_CITY_DETAILS': //home
+        case 'SET_CURRENT_CITY_DETAILS': 
             return {
                 ...state,
                 loading: false,
@@ -37,29 +37,29 @@ const homeReducer = (state = initialState, action) => {
                 },
 
             }
-        case 'ADD_TO_FAVORITES': //home
+        case 'ADD_TO_FAVORITES': 
             return {
                 ...state,
                 favorites: action.favorites
             }
 
-        case 'FIRST_TIME_FINISHED': //home
+        case 'FIRST_TIME_FINISHED': 
             return {
                 ...state,
                 firstTime: false
             }
-        case 'REMOVE_FROM_FAVORITES': //home
+        case 'REMOVE_FROM_FAVORITES': 
             return {
                 ...state,
                 favorites: action.favorites
             }
 
-        case 'CLOSE_MODAL': //home
+        case 'CLOSE_MODAL': 
             return {
                 ...state,
                 show: false
             }
-        case 'OPEN_MODAL': //home
+        case 'OPEN_MODAL': 
             return {
                 ...state,
                 show: true,
@@ -67,27 +67,27 @@ const homeReducer = (state = initialState, action) => {
                 modalText: action.text
             }
             
-        case 'UPDATE_FAVORITES'://all
+        case 'UPDATE_FAVORITES':
             return {
                 ...state,
                 favorites: action.favorites,
                 loading: false
             }
 
-        case 'CLEAR': //all
+        case 'CLEAR': 
             return {
                 ...state,
                 searchArr: [],
                 searchText: ''
             }
 
-        case 'SET_FAVORITE_CITY_DETAILS': //favorites
+        case 'SET_FAVORITE_CITY_DETAILS': 
             return {
                 ...state,
                 current: { ...action.payload },
             }
 
-        case 'TOGGLE': //navigation
+        case 'TOGGLE': 
             return {
                 ...state,
                 unit: action.unit,
@@ -98,7 +98,7 @@ const homeReducer = (state = initialState, action) => {
                 }
             }
 
-        case 'LOADING': //home
+        case 'LOADING': 
             return {
                 ...state,
                 loading: true

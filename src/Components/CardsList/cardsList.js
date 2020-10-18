@@ -5,8 +5,8 @@ import './cardsList.scss'
 import { arrayExists } from '../../UtilityFunctions/functions'
 import propTypes from 'prop-types';
 
-const cardsList = (props) => {
-    const {favorites, unit,click} = props;
+const CardsList = (props) => {
+    const {favorites,click,today,current, unit} = props;
     if (props.isFav) {
         return (
             <div className="container">
@@ -27,11 +27,11 @@ const cardsList = (props) => {
     }
     return (
         <div className="row justify-content-center">
-            {arrayExists(props.current.fiveDaysForecast) && props.current.fiveDaysForecast.map((currentDay, index) => {
+            {arrayExists(current.fiveDaysForecast) && current.fiveDaysForecast.map((currentDay, index) => {
                 return <Card currentDay={currentDay}
-                    today={props.today}
+                    today={today}
                     index={index}
-                    unit={props.unit}
+                    unit={unit}
                     key={currentDay.Date}
                     />
             }
@@ -40,7 +40,7 @@ const cardsList = (props) => {
     );
 }
 
-cardsList.propTypes = {
+CardsList.propTypes = {
     unit: propTypes.string,
     current: propTypes.object,
     favorites: propTypes.array,
@@ -50,4 +50,4 @@ cardsList.propTypes = {
     today: propTypes.number
 }
 
-export default cardsList;
+export default CardsList;

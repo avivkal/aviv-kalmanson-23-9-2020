@@ -10,7 +10,7 @@ import { convertIconPath, existsInFavorites, findKeyByName } from '../../Utility
 import { getFavorites } from '../../UtilityFunctions/localStorageFunctions'
 import CustomModal from '../Modal/customModal'
 import JumbotronContent from '../Jumbotron/jumbotronContent'
-import _, {debounce} from 'lodash';
+import {debounce} from 'lodash';
 import { Spinner } from 'react-bootstrap';
 
 
@@ -26,7 +26,7 @@ class Home extends Component {
         }
         const oldFavorites = getFavorites();
         this.props.updateFavorites(oldFavorites);
-        if (this.props.firstTime) {  //actions async
+        if (this.props.firstTime) {  
             this.props.firstLoad();
         }
         

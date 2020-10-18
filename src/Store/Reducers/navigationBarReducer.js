@@ -7,14 +7,14 @@ const initialState = {
 
 const navigationBarReducer = (state = initialState, action) => { 
     switch (action.type) {
-        case 'TOGGLE_DARK_MODE': //navigation
+        case 'TOGGLE_DARK_MODE': 
             return{
                 ...state,
                 darkmode: !state.darkmode,
                 darkModeText: state.darkModeText==='light' ? 'dark' : 'light'
             }
 
-        case 'TOGGLE': //navigation
+        case 'TOGGLE': 
             return {
                 ...state,
                 unit: action.unit,

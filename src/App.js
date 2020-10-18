@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
 import './App.scss';
 import Home from './Components/Home/Home'
 import Favorites from './Components/Favorites/Favorites'
