@@ -116,7 +116,6 @@ const mapStateToProps = (state) => {
         loading
     }
 }
-
 const mapDispatchToProps = (dispatch) => {
     return {
         updateText: (val) => dispatch(homeActions.updateText(val)),
