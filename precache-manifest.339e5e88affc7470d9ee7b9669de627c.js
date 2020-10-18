@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b327b2b28fa6ff826772b733a645bead",
+    "revision": "aaa36ac7c0925f6d0ced591680e80f81",
     "url": "/aviv-kalmanson-23-9-2020/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/aviv-kalmanson-23-9-2020/static/css/2.2b6fbda5.chunk.css"
   },
   {
-    "revision": "fd321f13ca6f27f58601",
+    "revision": "1c4f3cd16ad5c8f2cac2",
     "url": "/aviv-kalmanson-23-9-2020/static/css/main.6845cb7a.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/aviv-kalmanson-23-9-2020/static/js/2.2ef716ad.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fd321f13ca6f27f58601",
-    "url": "/aviv-kalmanson-23-9-2020/static/js/main.a1ab32e8.chunk.js"
+    "revision": "1c4f3cd16ad5c8f2cac2",
+    "url": "/aviv-kalmanson-23-9-2020/static/js/main.2e9efc63.chunk.js"
   },
   {
     "revision": "e301be6fe3c5a056972a",
