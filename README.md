@@ -1,10 +1,19 @@
 ## Table of contents
 [Weather App](#weatherApp)  
-[How to run](#run)  
+[Features](#features)  
+[Running instructions](#run)  
 
 ## Weather App
 This is a simple and interactive web app to view the current weather at any city in the world. 
 <a name="weatherApp"/>
+
+## Features
+*Available in both Celsius and Fahrenheit.
+*Dark mode included.
+*Autocompleted search for cities.
+*Easy to use, espicially focused on UX.
+*Search for 5 days forecast and the current temperature for any city in the world.
+<a name="features"/>
 
 ## How to run it
 There are 3 simple steps.
@@ -15,9 +24,3 @@ There are 3 simple steps.
 
 ### `visit localhost:3000/aviv-kalmanson-23-9-2020`
 <a name="run"/>
-
-
-
-## What makes it special?
-
-In this project my goal was to really make it as simple as possible to use, while using any device you want.
