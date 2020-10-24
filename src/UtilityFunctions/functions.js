@@ -1,3 +1,5 @@
+import { CELSIUS, FAHRENHEIT } from "../Constants/const";
+
 const convertCelsiusToFahrenheit = (celsius) => {
     let fahrenheit = (celsius * 1.8) + 32;
     return fahrenheit.toFixed(1);
@@ -25,17 +27,17 @@ const existsInFavorites = (x, favorites) => {
 const convertTemp = (arr) => {
     if (arrayExists(arr)) {
         arr.map((current) => {
-            if(current.Temperature.Minimum.Unit === 'F'){
+            if(current.Temperature.Minimum.Unit === FAHRENHEIT){
                 current.Temperature.Minimum.Value = convertFahrenheitToCelsius(current.Temperature.Minimum.Value);
                 current.Temperature.Maximum.Value = convertFahrenheitToCelsius(current.Temperature.Maximum.Value);
-                current.Temperature.Minimum.Unit = 'C';
-                current.Temperature.Maximum.Unit = 'C';
+                current.Temperature.Minimum.Unit = CELSIUS;
+                current.Temperature.Maximum.Unit = CELSIUS;
             }
             else{
                 current.Temperature.Minimum.Value = convertCelsiusToFahrenheit(current.Temperature.Minimum.Value);
                 current.Temperature.Maximum.Value = convertCelsiusToFahrenheit(current.Temperature.Maximum.Value);
-                current.Temperature.Minimum.Unit = 'F';
-                current.Temperature.Maximum.Unit = 'F';
+                current.Temperature.Minimum.Unit = FAHRENHEIT;
+                current.Temperature.Maximum.Unit = FAHRENHEIT;
             }
             
             return current;

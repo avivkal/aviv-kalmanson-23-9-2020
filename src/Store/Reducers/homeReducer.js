@@ -1,16 +1,11 @@
+import {CELSIUS, DARK, LIGHT} from '../../Constants/const'
+
 const initialState = {
-    // favorites: [], 
     current: {}, 
-    // searchText: '', 
-    // searchArr: [], 
     firstTime: true, 
-    // show: false,
-    // modalTitle: '', 
-    // modalText: '',
-    // loading: false,
-    unit: 'C',
+    unit: CELSIUS,
     darkmode: false,
-    darkModeText: 'light'
+    darkModeText: LIGHT
 }
 
 
@@ -58,7 +53,7 @@ const homeReducer = (state = initialState, action) => {
             return{
                 ...state,
                 darkmode: !state.darkmode,
-                darkModeText: state.darkModeText==='light' ? 'dark' : 'light'
+                darkModeText: state.darkModeText===LIGHT ? DARK : LIGHT
             }
 
         default:

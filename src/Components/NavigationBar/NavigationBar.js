@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import * as generalActions from '../../Store/Actions/actions'
 import * as homeActions from '../../Store/Actions/homeActions'
 import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, convertTemp } from '../../UtilityFunctions/functions';
-import { HOME_PATH, FAVORITES_PATH } from '../../Constants/const'
+import { HOME_PATH, FAVORITES_PATH, CELSIUS, FAHRENHEIT } from '../../Constants/const'
 
 
 class NavigationBar extends Component {
@@ -14,13 +14,13 @@ class NavigationBar extends Component {
 
         const unit = this.props.unit;
         let newUnit, currentNewTemp, newFavorites;
-        if (unit === 'C') {
-            newUnit = 'F';
+        if (unit === CELSIUS) {
+            newUnit = FAHRENHEIT;
             currentNewTemp = convertCelsiusToFahrenheit(this.props.current.currentTemp);
             newFavorites = convertFavoritesToFahrenheit();
         }
         else {
-            newUnit = 'C';
+            newUnit = CELSIUS;
             currentNewTemp = convertFahrenheitToCelsius(this.props.current.currentTemp);
             newFavorites = convertFavoritesToCelsius();
         }
@@ -46,9 +46,9 @@ class NavigationBar extends Component {
                     onClick={() => { this.toggleHandle() }}
                     variant="secondary"
                 >
-                    <span className={this.props.unit === 'C' ? 'active' : null}>°C </span>
+                    <span className={this.props.unit === CELSIUS ? 'active' : null}>°C </span>
                     <span>/</span>
-                    <span className={this.props.unit === 'F' ? 'active' : null}> °F</span>
+                    <span className={this.props.unit === FAHRENHEIT ? 'active' : null}> °F</span>
                 </Button>
 
                 <Button

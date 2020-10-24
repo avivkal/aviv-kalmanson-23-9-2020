@@ -6,3 +6,7 @@ export const DEFAULT_CITY_KEY = '215854';
 export const DEFAULT_CITY_NAME = 'Tel Aviv';
 export const HOME_PATH = '/aviv-kalmanson-23-9-2020';
 export const FAVORITES_PATH = '/aviv-kalmanson-23-9-2020/favorites';
+export const DARK = 'dark';
+export const LIGHT = 'light';
+export const CELSIUS = 'C';
+export const FAHRENHEIT = 'F';

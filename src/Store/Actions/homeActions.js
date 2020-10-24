@@ -2,16 +2,16 @@ import { actionTypes } from '../actionTypes'
 import { store } from '../store'
 import { convertTemp } from '../../UtilityFunctions/functions'
 import axios from 'axios'
-import { API_PATH, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME } from '../../Constants/const'
+import { API_PATH, CELSIUS, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME, LIGHT } from '../../Constants/const'
 import { clear, loading, finishedLoading } from './actions'
 import { openModal } from './modalActions'
 
 const setCurrentCityDetails = (data, cityKey, cityName) => {
     const unit = store.getState().home.unit;
     const icon = data[1].data[0].WeatherIcon < 10 ? '0' + data[1].data[0].WeatherIcon : data[1].data[0].WeatherIcon;
-    const currentTemp = unit === 'C' ? Math.floor(data[1].data[0].Temperature.Metric.Value) : Math.floor(data[1].data[0].Temperature.Imperial.Value);
+    const currentTemp = unit === CELSIUS ? Math.floor(data[1].data[0].Temperature.Metric.Value) : Math.floor(data[1].data[0].Temperature.Imperial.Value);
     const currentStateOfWeather = data[1].data[0].WeatherText;
-    const fiveDaysForecast = unit === 'C' ? convertTemp(data[0].data.DailyForecasts) : data[0].data.DailyForecasts;
+    const fiveDaysForecast = unit === CELSIUS ? convertTemp(data[0].data.DailyForecasts) : data[0].data.DailyForecasts;
 
     return {
         type: actionTypes.SET_CURRENT_CITY_DETAILS,
@@ -83,7 +83,7 @@ const toggle = (newTemp, newUnit, fiveDays) => {
 }
 
 const toggleDarkMode = () => {
-    if(store.getState().home.darkModeText === 'light'){ //change the body background color
+    if(store.getState().home.darkModeText === LIGHT){ //change the body background color
         document.body.style.backgroundColor = "#343A40";
     }
     else{
