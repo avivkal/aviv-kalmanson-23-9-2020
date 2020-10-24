@@ -1,15 +1,12 @@
 ## Table of contents
 [Weather App](#weatherApp)  
+[How to run](#run)  
+
 ## Weather App
 This is a simple and interactive web app to view the current weather at any city in the world. 
 <a name="weatherApp"/>
 
-[How to run?](#run)  
-[Emphasis](#emphasis)  
-[Emphasis](#emphasis)  
 ## How to run it
-<a name="run"/>
-
 There are 3 simple steps.
 
 ### `npm install`
@@ -17,6 +14,9 @@ There are 3 simple steps.
 ### `npm start`
 
 ### `visit localhost:3000/aviv-kalmanson-23-9-2020`
+<a name="run"/>
+
+
 
 ## What makes it special?
 
