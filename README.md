@@ -8,11 +8,11 @@ This is a simple and interactive web app to view the current weather at any city
 <a name="weatherApp"/>
 
 ## Features
-*Available in both Celsius and Fahrenheit.
-*Dark mode included.
-*Autocompleted search for cities.
-*Easy to use, espicially focused on UX.
-*Search for 5 days forecast and the current temperature for any city in the world.
+* Available in both Celsius and Fahrenheit.
+* Dark mode included.
+* Autocompleted search for cities.
+* Easy to use, espicially focused on UX.
+* Search for 5 days forecast and the current temperature for any city in the world.
 <a name="features"/>
 
 ## How to run it
