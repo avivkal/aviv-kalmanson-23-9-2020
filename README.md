@@ -1,11 +1,24 @@
+## Table of contents
+[Headers](#headers)  
+[Emphasis](#emphasis)  
+
+
+<a name="headers"/>
+## Headers
+blah
+
 ## Weather App
 This is a simple and interactive web app to view the current weather at any city in the world. 
 
 ## How to run it
 
+There are 3 simple steps.
+
+### `npm install`
+
 ### `npm start`
 
-Running the project is pretty simple, just type npm start in the console and you are good to go!
+### `visit localhost:3000/aviv-kalmanson-23-9-2020`
 
 ## What makes it special?
 
