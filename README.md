@@ -1,4 +1,4 @@
-![Alt text](./path/to/img.jpg)
+![Alt text](./darkScreen.jpg)
 ## Table of contents
 [Weather App](#weatherApp)  
 [Features](#features)  
