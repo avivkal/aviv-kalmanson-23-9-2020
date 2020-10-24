@@ -19,8 +19,8 @@ A simple and interactive web app to view the current weather at any city in the 
 ![Dark Screen](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/darkScreen.png)
 <a name="features"/>
 
-## How to run it
-There are 3 simple steps.
+## Running instructions
+To run the project please follow these steps:
 
 ### `npm install`
 
