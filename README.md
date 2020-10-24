@@ -26,7 +26,7 @@ Including a variety of cool features such as dark mode and Fahrenheit/Celsius to
 <a name="run"/>
 
 ## Running instructions
-To run the project please follow these steps:
+To run the project please follow those steps:
 
 ### `npm install`
 
