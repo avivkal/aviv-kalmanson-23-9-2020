@@ -1,12 +1,18 @@
-![Alt text](./path/to/img.jpg)
 ## Table of contents
 [Weather App](#weatherApp)  
 [Features](#features)  
 [Running instructions](#run)  
 
+<a name="weatherApp"/>
+
 ## Weather App
 A simple and interactive web app to view the current weather at any city in the world. 
-<a name="weatherApp"/>
+
+Including a variety of cool features such as dark mode and Fahrenheit/Celsius toggler.
+
+![Light Screen](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/lightScreen.png)
+
+<a name="features"/>
 
 ## Features
 * Available in both Celsius and Fahrenheit.
@@ -14,14 +20,16 @@ A simple and interactive web app to view the current weather at any city in the 
 * Autocompleted search for cities.
 * Easy to use, espicially focused on UX.
 * Search for 5 days forecast and the current temperature for any city in the world.
-<a name="features"/>
 
-## How to run it
-There are 3 simple steps.
+![Dark Screen](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/darkScreen.png)
+
+<a name="run"/>
+
+## Running instructions
+To run the project please follow those steps:
 
 ### `npm install`
 
 ### `npm start`
 
 ### `visit localhost:3000/aviv-kalmanson-23-9-2020`
-<a name="run"/>

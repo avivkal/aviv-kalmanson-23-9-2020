@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 
 const CustomModal = (props) => {
-
     return (
         <Modal show={props.show} onHide={props.closeModal}>
             <Modal.Header closeButton>
