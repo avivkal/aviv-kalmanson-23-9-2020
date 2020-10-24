@@ -9,7 +9,6 @@ A simple and interactive web app to view the current weather at any city in the 
 Including a variety of cool features such as dark mode and Fahrenheit/Celsius toggler.
 
 ![Light Screen](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/lightScreen.png)
-
 <a name="weatherApp"/>
 
 ## Features
