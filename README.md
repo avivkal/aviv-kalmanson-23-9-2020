@@ -1,4 +1,4 @@
-![Alt text](./darkScreen.jpg)
+![Alt text](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/darkScreen.png)
 ## Table of contents
 [Weather App](#weatherApp)  
 [Features](#features)  
