@@ -21,8 +21,15 @@ const loading = () => {
     }
 }
 
+const finishedLoading = () => {
+    return{
+        type: actionTypes.FINISHED_LOADING
+    }
+}
+
 export {
     clear,
     updateFavorites,
-    loading
+    loading,
+    finishedLoading
 }

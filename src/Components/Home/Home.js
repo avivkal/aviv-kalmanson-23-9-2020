@@ -6,6 +6,9 @@ import 'semantic-ui-css/semantic.min.css'
 import { CSSTransitionGroup } from 'react-transition-group';
 import * as generalActions from '../../Store/Actions/actions'
 import * as homeActions from '../../Store/Actions/homeActions'
+import * as searchActions from '../../Store/Actions/searchActions'
+import * as favoriteActions from '../../Store/Actions/favoritesActions'
+import * as modalActions from '../../Store/Actions/modalActions'
 import { convertIconPath, existsInFavorites, findKeyByName } from '../../UtilityFunctions/functions'
 import { getFavorites } from '../../UtilityFunctions/localStorageFunctions'
 import CustomModal from '../Modal/customModal'
@@ -101,8 +104,11 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {favorites,current,searchArr,firstTime,show,modalText,modalTitle, loading} = state.home; 
-    const {unit,darkModeText} = state.navigation;
+    const {current,firstTime, unit,darkModeText} = state.home; 
+    const {modalTitle, modalText, show} = state.modal;
+    const {searchArr} = state.search;
+    const {favorites} = state.favorites;
+    const {loading} = state.loading;
     return {
         favorites,
         current,
@@ -118,18 +124,18 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateText: (val) => dispatch(homeActions.updateText(val)),
-        updateSearch: (arr) => dispatch(homeActions.updateSearch(arr)),
+        updateText: (val) => dispatch(searchActions.updateText(val)),
+        updateSearch: (arr) => dispatch(searchActions.updateSearch(arr)),
         setCurrentCityDetails: (data, cityKey, cityName) => dispatch(homeActions.setCurrentCityDetails(data, cityKey, cityName)),
-        addToFavorites: () => dispatch(homeActions.addToFavorites()),
+        addToFavorites: () => dispatch(favoriteActions.addToFavorites()),
         firstTimeFinished: () => dispatch(homeActions.firstTimeFinished()),
         clearText: () => dispatch(generalActions.clear()),
-        removeFromFavorites: (key) => dispatch(homeActions.removeFromFavorites(key)),
-        closeModal: () => dispatch(homeActions.closeModal()),
-        openModal: (title, text) => dispatch(homeActions.openModal(title, text)),
+        removeFromFavorites: (key) => dispatch(favoriteActions.removeFromFavorites(key)),
+        closeModal: () => dispatch(modalActions.closeModal()),
+        openModal: (title, text) => dispatch(modalActions.openModal(title, text)),
         updateFavorites: (favorites) => dispatch(generalActions.updateFavorites(favorites)),
         submit: (cityKey, cityName) => dispatch(homeActions.submit(cityKey, cityName)),
-        changeHandler: (event) => dispatch(homeActions.changeHandler(event)),
+        changeHandler: (event) => dispatch(searchActions.changeHandler(event)),
         firstLoad: () => dispatch(homeActions.firstLoad()),
 
     }

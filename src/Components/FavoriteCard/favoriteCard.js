@@ -19,7 +19,7 @@ const favoriteCard = (props) => {
                             {currentStateOfWeather}
                         </div>
                         <div className="image">
-                            <img className="icons-images" src={ICON_PATH_1 + icon + ICON_PATH_2} alt="weather icon day"></img>
+                            <img className="icons-images" src={`${ICON_PATH_1}${icon}${ICON_PATH_2}`} alt="weather icon day"></img>
                         </div>
                     </div>
                 </Card.Body>

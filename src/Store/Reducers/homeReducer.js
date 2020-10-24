@@ -1,32 +1,24 @@
 const initialState = {
-    favorites: [], 
+    // favorites: [], 
     current: {}, 
-    searchText: '', 
-    searchArr: [], 
+    // searchText: '', 
+    // searchArr: [], 
     firstTime: true, 
-    show: false,
-    modalTitle: '', 
-    modalText: '',
-    loading: false 
+    // show: false,
+    // modalTitle: '', 
+    // modalText: '',
+    // loading: false,
+    unit: 'C',
+    darkmode: false,
+    darkModeText: 'light'
 }
 
 
 const homeReducer = (state = initialState, action) => { 
     switch (action.type) {
-        case 'UPDATE_TEXT': 
-            return {
-                ...state,
-                searchText: action.val
-            }
-        case 'UPDATE_SEARCH':  
-            return {
-                ...state,
-                searchArr: action.arr
-            }
         case 'SET_CURRENT_CITY_DETAILS': 
             return {
                 ...state,
-                loading: false,
                 current: {
                     key: action.cityKey,
                     cityName: action.cityName,
@@ -37,48 +29,12 @@ const homeReducer = (state = initialState, action) => {
                 },
 
             }
-        case 'ADD_TO_FAVORITES': 
-            return {
-                ...state,
-                favorites: action.favorites
-            }
+
 
         case 'FIRST_TIME_FINISHED': 
             return {
                 ...state,
                 firstTime: false
-            }
-        case 'REMOVE_FROM_FAVORITES': 
-            return {
-                ...state,
-                favorites: action.favorites
-            }
-
-        case 'CLOSE_MODAL': 
-            return {
-                ...state,
-                show: false
-            }
-        case 'OPEN_MODAL': 
-            return {
-                ...state,
-                show: true,
-                modalTitle: action.title,
-                modalText: action.text
-            }
-            
-        case 'UPDATE_FAVORITES':
-            return {
-                ...state,
-                favorites: action.favorites,
-                loading: false
-            }
-
-        case 'CLEAR': 
-            return {
-                ...state,
-                searchArr: [],
-                searchText: ''
             }
 
         case 'SET_FAVORITE_CITY_DETAILS': 
@@ -98,11 +54,13 @@ const homeReducer = (state = initialState, action) => {
                 }
             }
 
-        case 'LOADING': 
-            return {
+        case 'TOGGLE_DARK_MODE': 
+            return{
                 ...state,
-                loading: true
+                darkmode: !state.darkmode,
+                darkModeText: state.darkModeText==='light' ? 'dark' : 'light'
             }
+
         default:
             return state
     }

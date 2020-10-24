@@ -3,6 +3,7 @@
 .state-of-weather{
     font-size: 70px;
     margin-top: 50px;
+    font-weight: normal;
 }
   
 .add-to-favorites{
@@ -29,4 +30,8 @@
     &:hover{
         cursor: pointer;
     }
+}
+
+.city-details{
+    font-weight: normal;
 }

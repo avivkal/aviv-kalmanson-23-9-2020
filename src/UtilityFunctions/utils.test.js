@@ -1,4 +1,4 @@
-import {convertCelsiusToFahrenheit, convertFahrenheitToCelsius, convertIconPath, arrayExists} from './UtilityFunctions/functions';
+import {convertCelsiusToFahrenheit, convertFahrenheitToCelsius, convertIconPath, arrayExists} from './functions';
 
 test('Conversion test 1', () => {
     const value = convertCelsiusToFahrenheit(10);

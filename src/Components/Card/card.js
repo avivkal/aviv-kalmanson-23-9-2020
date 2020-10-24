@@ -16,11 +16,11 @@ const card = (props) => {
                     {currentDay.Temperature.Minimum.Value}  - {currentDay.Temperature.Maximum.Value} °{unit}
                     <div className="row icons-day-night justify-content-center">
                         <span className="d-flex justify-content-start span-width">Day:</span>
-                        <img className="icons-images" src={ICON_PATH_1 + convertIconPath(currentDay.Day.Icon) + ICON_PATH_2} alt="weather icon day"></img>
+                        <img className="icons-images" src={`${ICON_PATH_1}${convertIconPath(currentDay.Day.Icon)}${ICON_PATH_2}`} alt="weather icon day"></img>
                     </div>
                     <div className="row icons-day-night justify-content-center">
                     <span className="d-flex justify-content-start span-width">Night:</span>
-                        <img className="icons-images" src={ICON_PATH_1 + convertIconPath(currentDay.Night.Icon) + ICON_PATH_2} alt="weather icon night"></img>
+                        <img className="icons-images" src={`${ICON_PATH_1}${convertIconPath(currentDay.Night.Icon)}${ICON_PATH_2}`} alt="weather icon night"></img>
                     </div>
                 </div>
             </Card.Body>

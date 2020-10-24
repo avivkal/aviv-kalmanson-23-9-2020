@@ -1,9 +1,9 @@
 import { actionTypes } from '../actionTypes'
 import axios from 'axios'
-import { getFavorites } from '../../UtilityFunctions/localStorageFunctions'
+import { getFavorites, setFavorites } from '../../UtilityFunctions/localStorageFunctions'
 import { arrayExists, convertTemp } from '../../UtilityFunctions/functions'
 import { API_PATH } from '../../Constants/const'
-import { updateFavorites,loading } from './actions'
+import { updateFavorites,loading, finishedLoading } from './actions'
 import { store } from '../store'
 
 
@@ -31,7 +31,7 @@ const firstLoadFavorites = () => async dispatch => {
                 axios.get('currentconditions/v1/' + favorite.key + API_PATH)])
             )
         }
-        const unit = store.getState().navigation.unit;
+        const unit = store.getState().home.unit;
         const response = await axios.all(requests);
 
             for (let i = 0; i < response.length; i++) {
@@ -43,11 +43,40 @@ const firstLoadFavorites = () => async dispatch => {
             dispatch(updateFavorites(oldFavorites));
             dispatch(firstTimeFinishedFavorites());
     }
+    dispatch(finishedLoading());
     
+}
+
+const removeFromFavorites = (key) => {
+    const favoriteCities = store.getState().favorites.favorites;
+    const newFavList = favoriteCities.filter(city => city.key !== key);
+    setFavorites(newFavList);
+    return {
+        type: actionTypes.REMOVE_FROM_FAVORITES,
+        favorites: newFavList
+    }
+}
+const addToFavorites = () => {
+    const favorites = getFavorites();
+    const current = store.getState().home.current;
+    let newFav = [];
+    if (!arrayExists(favorites)) {
+        newFav.push(current);
+    }
+    else {
+        newFav = favorites.concat(current);
+    }
+    setFavorites(newFav);
+    return {
+        type: actionTypes.ADD_TO_FAVORITES,
+        favorites: newFav
+    }
 }
 
 export {
     setFavoriteCityDetails,
     firstTimeFinishedFavorites,
-    firstLoadFavorites
+    firstLoadFavorites,
+    addToFavorites,
+    removeFromFavorites
 }

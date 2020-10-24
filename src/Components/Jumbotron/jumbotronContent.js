@@ -19,9 +19,9 @@ const jumbotronContent = (props) => {
             <Row className="show-grid">
                 <Col md={{ span: 6, offset: 3 }} className="justify-content-center">
                     <section >
-                        <h3>{current.cityName}</h3>
-                        <h3>{current.currentTemp} °{unit}</h3>
-                        <img className="icons-images" src={ICON_PATH_1 + current.icon + ICON_PATH_2} alt="weather icon"></img>
+                        <h2 className="city-details">{current.cityName}</h2>
+                        <h2 className="city-details">{current.currentTemp} °{unit}</h2>
+                        <img className="icons-images" src={`${ICON_PATH_1}${current.icon}${ICON_PATH_2}`} alt="weather icon"></img>
                     </section>                        </Col>
                 <Col md={3} className="d-flex justify-content-center">
                     <section>

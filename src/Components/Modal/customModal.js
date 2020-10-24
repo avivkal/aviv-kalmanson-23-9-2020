@@ -2,12 +2,12 @@ import React from 'react'
 import propTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux'
-import {closeModal} from '../../Store/Actions/homeActions'
+import {closeModal} from '../../Store/Actions/modalActions'
 
 const CustomModal = (props) => {
     const dispatch = useDispatch();
-    const modalTitle = useSelector(state => state.home.modalTitle);
-    const modalText = useSelector(state => state.home.modalText);
+    const modalTitle = useSelector(state => state.modal.modalTitle);
+    const modalText = useSelector(state => state.modal.modalText);
 
     return (
         <Modal show={props.show} onHide={() => dispatch(closeModal())}>

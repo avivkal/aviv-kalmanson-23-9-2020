@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import * as generalActions from '../../Store/Actions/actions'
-import * as navigationBarActions from '../../Store/Actions/navigationBarActions'
+import * as homeActions from '../../Store/Actions/homeActions'
 import { existsInFavorites, convertFavoritesToCelsius, convertFavoritesToFahrenheit, convertFahrenheitToCelsius, convertCelsiusToFahrenheit, convertTemp } from '../../UtilityFunctions/functions';
 import { HOME_PATH, FAVORITES_PATH } from '../../Constants/const'
 
@@ -75,8 +75,8 @@ class NavigationBar extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggle: (newTemp, newUnit, fiveDays) => dispatch(navigationBarActions.toggle(newTemp, newUnit, fiveDays)),
-        toggleDarkMode: () => dispatch(navigationBarActions.toggleDarkMode()),
+        toggle: (newTemp, newUnit, fiveDays) => dispatch(homeActions.toggle(newTemp, newUnit, fiveDays)),
+        toggleDarkMode: () => dispatch(homeActions.toggleDarkMode()),
         updateFavorites: (favorites) => dispatch(generalActions.updateFavorites(favorites)),
 
     }
@@ -84,10 +84,10 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        darkMode: state.navigation.darkmode,
-        unit: state.navigation.unit,
+        darkMode: state.home.darkmode,
+        unit: state.home.unit,
         current: state.home.current,
-        favorites: state.home.favorites
+        favorites: state.favorites.favorites
     }
 }
 
