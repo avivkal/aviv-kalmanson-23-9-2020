@@ -6,7 +6,6 @@
 This is a simple and interactive web app to view the current weather at any city in the world. 
 <a name="weatherApp"/>
 
-<a>
 ## How to run it
 There are 3 simple steps.
 
