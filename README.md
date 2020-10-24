@@ -1,4 +1,6 @@
-![Alt text](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/darkScreen.png)
+![Dark Screen](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/darkScreen.png)
+![Light Screen](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/lightScreen.png)
+
 ## Table of contents
 [Weather App](#weatherApp)  
 [Features](#features)  
