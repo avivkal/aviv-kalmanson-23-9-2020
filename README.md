@@ -3,14 +3,15 @@
 [Features](#features)  
 [Running instructions](#run)  
 
+<a name="weatherApp"/>
 ## Weather App
 A simple and interactive web app to view the current weather at any city in the world. 
 
 Including a variety of cool features such as dark mode and Fahrenheit/Celsius toggler.
 
 ![Light Screen](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/lightScreen.png)
-<a name="weatherApp"/>
 
+<a name="features"/>
 ## Features
 * Available in both Celsius and Fahrenheit.
 * Dark mode included.
@@ -19,8 +20,8 @@ Including a variety of cool features such as dark mode and Fahrenheit/Celsius to
 * Search for 5 days forecast and the current temperature for any city in the world.
 
 ![Dark Screen](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/darkScreen.png)
-<a name="features"/>
 
+<a name="run"/>
 ## Running instructions
 To run the project please follow these steps:
 
@@ -29,4 +30,3 @@ To run the project please follow these steps:
 ### `npm start`
 
 ### `visit localhost:3000/aviv-kalmanson-23-9-2020`
-<a name="run"/>
