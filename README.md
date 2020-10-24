@@ -5,9 +5,6 @@
 [Emphasis](#emphasis)  
 
 <a name="weatherApp"/>
-## Headers
-blah
-
 ## Weather App
 This is a simple and interactive web app to view the current weather at any city in the world. 
 
