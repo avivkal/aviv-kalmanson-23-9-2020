@@ -6,6 +6,7 @@
 ## Weather App
 A simple and interactive web app to view the current weather at any city in the world. 
 ![Light Screen](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/lightScreen.png)
+
 <a name="weatherApp"/>
 
 ## Features
@@ -14,6 +15,7 @@ A simple and interactive web app to view the current weather at any city in the 
 * Autocompleted search for cities.
 * Easy to use, espicially focused on UX.
 * Search for 5 days forecast and the current temperature for any city in the world.
+
 ![Dark Screen](https://raw.githubusercontent.com/avivkal/aviv-kalmanson-23-9-2020/master/Images/darkScreen.png)
 <a name="features"/>
 
