@@ -6,7 +6,6 @@ import 'semantic-ui-css/semantic.min.css'
 import { CSSTransitionGroup } from 'react-transition-group';
 import * as generalActions from '../../Store/Actions/actions'
 import * as homeActions from '../../Store/Actions/homeActions'
-import * as searchActions from '../../Store/Actions/searchActions'
 import * as favoriteActions from '../../Store/Actions/favoritesActions'
 import * as modalActions from '../../Store/Actions/modalActions'
 import { convertIconPath, existsInFavorites, findKeyByName } from '../../UtilityFunctions/functions'
@@ -15,10 +14,16 @@ import CustomModal from '../Modal/customModal'
 import JumbotronContent from '../Jumbotron/jumbotronContent'
 import {debounce} from 'lodash';
 import { Spinner } from 'react-bootstrap';
+import axios from 'axios'
+import { API_PATH } from '../../Constants/const'
 
 
 class Home extends Component {
 
+    state={
+        searchText: '', 
+        searchArr: [], 
+    }
    
     componentDidMount() {
         for(let i = 1; i<=44; i++){
@@ -34,6 +39,26 @@ class Home extends Component {
         }
         
     }
+    
+    changeHandler = async (event) => {
+        try{
+            this.setState({searchText: event.target.value})
+            const response =  await axios.get('locations/v1/cities/autocomplete' + API_PATH + '&q=' + event.target.value)    
+            let arr = [];
+            for (let i = 0; i < response.data.length; i++) {
+                arr[i] = {
+                    key: response.data[i].Key,
+                    text: response.data[i].LocalizedName + ',' + response.data[i].AdministrativeArea.LocalizedName + ',' + response.data[i].Country.ID,
+                    value: response.data[i].LocalizedName + ',' + response.data[i].AdministrativeArea.LocalizedName + ',' + response.data[i].Country.ID,
+        
+                }
+            }
+            this.setState({searchArr: arr})
+        }
+        catch(error){
+            this.props.openModal('Error', error.toString());
+        }
+    }
 
 
 
@@ -47,7 +72,7 @@ class Home extends Component {
     }
 
     changeHandlerDelay = debounce(event => {
-        this.props.changeHandler(event);
+        this.changeHandler(event);
     },500);
     
     render() {
@@ -66,13 +91,13 @@ class Home extends Component {
                         button
                         floating
                         labeled
-                        options={this.props.searchArr}
+                        options={this.state.searchArr}
                         search
                         placeholder="Enter City"
                         onSearchChange={(event)=> {
                             event.persist();
                             this.changeHandlerDelay(event)}}
-                        onChange={(event) => { this.props.submit(findKeyByName(event.currentTarget.textContent, this.props.searchArr), event.currentTarget.textContent.split(',')[0]) }}
+                        onChange={(event) => { this.props.submit(findKeyByName(event.currentTarget.textContent, this.state.searchArr), event.currentTarget.textContent.split(',')[0]) }}
                     />
                 </section>
                 <CSSTransitionGroup transitionName="cards"
@@ -106,7 +131,7 @@ class Home extends Component {
 const mapStateToProps = (state) => {
     const {current,firstTime, unit,darkModeText} = state.home; 
     const {modalTitle, modalText, show} = state.modal;
-    const {searchArr} = state.search;
+    // const {searchArr} = state.search;
     const {favorites} = state.favorites;
     const {loading} = state.loading;
     return {
@@ -116,7 +141,7 @@ const mapStateToProps = (state) => {
         show,
         modalText,
         modalTitle,
-        searchArr,
+        // searchArr,
         unit,
         darkModeText,
         loading
@@ -124,9 +149,6 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateText: (val) => dispatch(searchActions.updateText(val)),
-        updateSearch: (arr) => dispatch(searchActions.updateSearch(arr)),
-        setCurrentCityDetails: (data, cityKey, cityName) => dispatch(homeActions.setCurrentCityDetails(data, cityKey, cityName)),
         addToFavorites: () => dispatch(favoriteActions.addToFavorites()),
         firstTimeFinished: () => dispatch(homeActions.firstTimeFinished()),
         clearText: () => dispatch(generalActions.clear()),
@@ -135,7 +157,6 @@ const mapDispatchToProps = (dispatch) => {
         openModal: (title, text) => dispatch(modalActions.openModal(title, text)),
         updateFavorites: (favorites) => dispatch(generalActions.updateFavorites(favorites)),
         submit: (cityKey, cityName) => dispatch(homeActions.submit(cityKey, cityName)),
-        changeHandler: (event) => dispatch(searchActions.changeHandler(event)),
         firstLoad: () => dispatch(homeActions.firstLoad()),
 
     }
