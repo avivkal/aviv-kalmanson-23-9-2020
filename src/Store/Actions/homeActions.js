@@ -38,7 +38,6 @@ const firstLoad = () => async dispatch => { //get first data = Tel Aviv/Current 
         axios.get('currentconditions/v1/' + DEFAULT_CITY_KEY + API_PATH)]);
         dispatch(setCurrentCityDetails(data, DEFAULT_CITY_KEY, DEFAULT_CITY_NAME));
         dispatch(firstTimeFinished()); 
-        dispatch(finishedLoading());
         navigator.geolocation.getCurrentPosition(async (pos) => { //if success
             let crd = pos.coords;
             const response = await axios.get(`locations/v1/cities/geoposition/search${API_PATH}&q=${crd.latitude}%2C${crd.longitude}`);
@@ -56,6 +55,9 @@ const firstLoad = () => async dispatch => { //get first data = Tel Aviv/Current 
     catch(error){
         dispatch(openModal('Error', error.toString()));
     }
+    finally{
+        dispatch(finishedLoading());
+    }
 
 }
 
@@ -70,7 +72,9 @@ const submit = (cityKey, cityName) => async dispatch => {
     catch(errors){
         dispatch(openModal('Error', errors.toString()));
     }
-    dispatch(finishedLoading());
+    finally{
+        dispatch(finishedLoading());
+    }
 }
 
 const toggle = (newTemp, newUnit, fiveDays) => {

@@ -5,6 +5,7 @@ import { arrayExists, convertTemp } from '../../UtilityFunctions/functions'
 import { API_PATH, CELSIUS } from '../../Constants/const'
 import { updateFavorites,loading, finishedLoading } from './actions'
 import { store } from '../store'
+import {openModal} from '../Actions/modalActions'
 
 
 const setFavoriteCityDetails = (payload) => {
@@ -21,29 +22,36 @@ const firstTimeFinishedFavorites = () => {
 }
 
 const firstLoadFavorites = () => async dispatch => {
-    dispatch(loading());
-    const oldFavorites = getFavorites();
-    let requests = [];
-    if(arrayExists(oldFavorites)){
-        for (const favorite of oldFavorites) {
-            requests.push(
-                axios.all([axios.get('forecasts/v1/daily/5day/' + favorite.key + API_PATH),
-                axios.get('currentconditions/v1/' + favorite.key + API_PATH)])
-            )
-        }
-        const unit = store.getState().home.unit;
-        const response = await axios.all(requests);
-
-            for (let i = 0; i < response.length; i++) {
-                oldFavorites[i].fiveDaysForecast = unit === CELSIUS ? convertTemp(response[i][0].data.DailyForecasts) : response[i][0].data.DailyForecasts;
-                oldFavorites[i].currentStateOfWeather = response[i][1].data[0].WeatherText;
-                oldFavorites[i].currentTemp = unit === CELSIUS ? Math.floor(response[i][1].data[0].Temperature.Metric.Value) : Math.floor(response[i][1].data[0].Temperature.Imperial.Value);
-                oldFavorites[i].icon = response[i][1].data[0].WeatherIcon < 10 ? '0' + response[i][1].data[0].WeatherIcon : response[i][1].data[0].WeatherIcon;
+    try{
+        dispatch(loading());
+        const oldFavorites = getFavorites();
+        let requests = [];
+        if(arrayExists(oldFavorites)){
+            for (const favorite of oldFavorites) {
+                requests.push(
+                    axios.all([axios.get('forecasts/v1/daily/5day/' + favorite.key + API_PATH),
+                    axios.get('currentconditions/v1/' + favorite.key + API_PATH)])
+                )
             }
-            dispatch(updateFavorites(oldFavorites));
-            dispatch(firstTimeFinishedFavorites());
+            const unit = store.getState().home.unit;
+            const response = await axios.all(requests);
+    
+                for (let i = 0; i < response.length; i++) {
+                    oldFavorites[i].fiveDaysForecast = unit === CELSIUS ? convertTemp(response[i][0].data.DailyForecasts) : response[i][0].data.DailyForecasts;
+                    oldFavorites[i].currentStateOfWeather = response[i][1].data[0].WeatherText;
+                    oldFavorites[i].currentTemp = unit === CELSIUS ? Math.floor(response[i][1].data[0].Temperature.Metric.Value) : Math.floor(response[i][1].data[0].Temperature.Imperial.Value);
+                    oldFavorites[i].icon = response[i][1].data[0].WeatherIcon < 10 ? '0' + response[i][1].data[0].WeatherIcon : response[i][1].data[0].WeatherIcon;
+                }
+                dispatch(updateFavorites(oldFavorites));
+                dispatch(firstTimeFinishedFavorites());
+        }
     }
-    dispatch(finishedLoading());
+    catch(error){
+        dispatch(openModal('Error', error.toString()));
+    }
+    finally{
+        dispatch(finishedLoading());
+    }
     
 }
 
